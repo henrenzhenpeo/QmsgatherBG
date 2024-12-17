@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpBgInkDensityMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfUpBgInkDensity">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="factory" column="factory" jdbcType="VARCHAR"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="color" column="color" jdbcType="VARCHAR"/>
+            <result property="stage" column="stage" jdbcType="VARCHAR"/>
+            <result property="testDate" column="test_date" jdbcType="VARCHAR"/>
+            <result property="densityLevel" column="density_level" jdbcType="DOUBLE"/>
+            <result property="testTime" column="test_time" jdbcType="VARCHAR"/>
+            <result property="densityValue" column="density_value" jdbcType="DOUBLE"/>
+            <result property="state" column="state" jdbcType="VARCHAR"/>
+            <result property="uploadName" column="upload_name" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,factory,project,
+        color,stage,test_date,
+        density_level,test_time,density_value,
+        state,upload_name,batch_id
+    </sql>
+</mapper>

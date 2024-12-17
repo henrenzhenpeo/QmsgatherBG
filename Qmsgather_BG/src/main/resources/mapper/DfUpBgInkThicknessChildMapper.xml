@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpBgInkThicknessChildMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfUpBgInkThicknessChild">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="nameId" column="name_id" jdbcType="VARCHAR"/>
+            <result property="point1" column="point1" jdbcType="VARCHAR"/>
+            <result property="point2" column="point2" jdbcType="VARCHAR"/>
+            <result property="point3" column="point3" jdbcType="VARCHAR"/>
+            <result property="platform" column="platform" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name_id,point1,
+        point2,point3,platform,
+        batch_id
+    </sql>
+</mapper>

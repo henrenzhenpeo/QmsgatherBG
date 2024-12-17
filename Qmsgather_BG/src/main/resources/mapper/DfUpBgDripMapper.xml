@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpBgDripMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfUpBgDrip">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="factory" column="factory" jdbcType="VARCHAR"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="color" column="color" jdbcType="VARCHAR"/>
+            <result property="stage" column="stage" jdbcType="VARCHAR"/>
+            <result property="process" column="process" jdbcType="VARCHAR"/>
+            <result property="testDate" column="test_date" jdbcType="VARCHAR"/>
+            <result property="testDate2" column="test_date2" jdbcType="VARCHAR"/>
+            <result property="testClass" column="test_class" jdbcType="VARCHAR"/>
+            <result property="testTime" column="test_time" jdbcType="VARCHAR"/>
+            <result property="value1" column="value1" jdbcType="DOUBLE"/>
+            <result property="value2" column="value2" jdbcType="DOUBLE"/>
+            <result property="value3" column="value3" jdbcType="DOUBLE"/>
+            <result property="value4" column="value4" jdbcType="DOUBLE"/>
+            <result property="value5" column="value5" jdbcType="DOUBLE"/>
+            <result property="value6" column="value6" jdbcType="DOUBLE"/>
+            <result property="value7" column="value7" jdbcType="DOUBLE"/>
+            <result property="value8" column="value8" jdbcType="DOUBLE"/>
+            <result property="value9" column="value9" jdbcType="DOUBLE"/>
+            <result property="uploadName" column="upload_name" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,factory,project,
+        color,stage,process,
+        test_date,test_date2,test_class,
+        test_time,value1,value2,
+        value3,value4,value5,
+        value6,value7,value8,
+        value9,upload_name,batch_id
+    </sql>
+</mapper>
