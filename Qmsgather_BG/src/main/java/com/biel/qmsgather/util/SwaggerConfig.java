@@ -19,7 +19,7 @@ public class SwaggerConfig {
                 .select()  
                 //通过包路径来指定哪些Controller中的API需要被Swagger扫描并生成文档。
                 //这里指定了"com.yourcompany.yourproject.controller"包及其子包中的所有Controller。
-                .apis(RequestHandlerSelectors.basePackage("com.biel.gateway.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.biel.qmsgather.controller"))
                 //扫描所有路径  
                 .paths(PathSelectors.any())
                 .build()  
@@ -30,8 +30,8 @@ public class SwaggerConfig {
   
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("qms数据采集")
-                .description("qms数据采集")
+                .title("qms数据采集BG")
+                .description("qms数据采集BG")
                 .version("1.0")  
                 .build();  
     }  

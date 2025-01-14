@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpBgBaigeTestImgMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfUpBgBaigeTestImg">
+            <result property="id" column="id" jdbcType="INTEGER"/>
+            <result property="process" column="process" jdbcType="VARCHAR"/>
+            <result property="imgAddress" column="img_address" jdbcType="VARCHAR"/>
+            <result property="imgNumber" column="img_number" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,process,img_address,
+        img_number,batch_id
+    </sql>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpBgBaigeTestMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfUpBgBaigeTest">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="process" column="process" jdbcType="VARCHAR"/>
+            <result property="factory" column="factory" jdbcType="VARCHAR"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="color" column="color" jdbcType="VARCHAR"/>
+            <result property="stage" column="stage" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="VARCHAR"/>
+            <result property="testDate" column="test_date" jdbcType="VARCHAR"/>
+            <result property="twoCode" column="two_code" jdbcType="VARCHAR"/>
+            <result property="testTime" column="test_time" jdbcType="VARCHAR"/>
+            <result property="area1" column="area1" jdbcType="VARCHAR"/>
+            <result property="area2" column="area2" jdbcType="VARCHAR"/>
+            <result property="area3" column="area3" jdbcType="VARCHAR"/>
+            <result property="area4" column="area4" jdbcType="VARCHAR"/>
+            <result property="area5" column="area5" jdbcType="VARCHAR"/>
+            <result property="area6" column="area6" jdbcType="VARCHAR"/>
+            <result property="area7" column="area7" jdbcType="VARCHAR"/>
+            <result property="conclusion" column="conclusion" jdbcType="VARCHAR"/>
+            <result property="uploadName" column="upload_name" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,process,factory,
+        project,color,stage,
+        state,test_date,2D_code,
+        test_time,area1,area2,
+        area3,area4,area5,
+        area6,area7,conclusion,
+        upload_name,batch_id
+    </sql>
+</mapper>
