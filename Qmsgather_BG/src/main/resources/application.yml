@@ -11,15 +11,20 @@ spring:
     #    url: jdbc:mysql://localhost:3306/df_demo_05
     url: jdbc:mysql://192.168.5.22:3306/boen_qms_j10-4?serverTimezone=UTC
     username: root
-    #    password: heshan8386
     password: root
+  servlet:
+    multipart:
+#      location: /Users/dafenqi/Downloads #上传文件临时目录
+      max-file-size: 10MB
+      max-request-size: 500MB
+file:
+  upload-dir: /Users/dafenqi/Downloads/uploads/ # 文件上传目录配置，需要修改
 server:
   port: 1234
 swagger:
   enabled: true
 gateway:
-  queue:
-    target: bg  # 每个服务器指定目标队列，例如“bg”或“cg”
+    ipconfig: http://192.168.5.75:8089 #需要修改
 logging:
   config: classpath:logback-spring.xml
 mybatis-plus:
