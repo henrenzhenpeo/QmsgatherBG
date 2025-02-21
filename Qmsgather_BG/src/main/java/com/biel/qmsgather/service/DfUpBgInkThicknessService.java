@@ -1,7 +1,9 @@
 package com.biel.qmsgather.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfUpBgInkThickness;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.biel.qmsgather.domain.dto.DfUpBgInkThicknessDto;
 
 /**
 * @author dafenqi

@@ -1,8 +1,14 @@
 package com.biel.qmsgather.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.api.R;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfUpBgInkThickness;
 import com.biel.qmsgather.domain.DfUpBgInkThicknessChild;
 import com.biel.qmsgather.domain.DfUpBgLiquidThrowing;
+import com.biel.qmsgather.domain.dto.DfUpBgInkThicknessDto;
 import com.biel.qmsgather.service.DfUpBgInkThicknessChildService;
 import com.biel.qmsgather.service.DfUpBgInkThicknessService;
 import com.biel.qmsgather.util.Result;
@@ -46,5 +52,30 @@ public class DfUpBgInkThicknessController {
         }
         return new Result(500,"请上传油墨厚度接口值");
     }
+
+
+    @PostMapping("/findDfUpBgInkThickness")
+    @ApiOperation(value = "油墨厚度查询接口")
+    public R findDfUpBgInkThickness(@RequestBody DfUpBgInkThicknessDto dfUpBgInkThicknessDto) {
+        QueryWrapper<DfUpBgInkThickness> dfUpBgInkThicknessQueryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotEmpty(dfUpBgInkThicknessDto.getFactory())) {
+            dfUpBgInkThicknessQueryWrapper.eq("factory", dfUpBgInkThicknessDto.getFactory());
+        }
+        if (StringUtils.isNotEmpty(dfUpBgInkThicknessDto.getStage())) {
+            dfUpBgInkThicknessQueryWrapper.eq("stage", dfUpBgInkThicknessDto.getStage());
+        }
+        if (StringUtils.isNotEmpty(dfUpBgInkThicknessDto.getProject())) {
+            dfUpBgInkThicknessQueryWrapper.eq("project", dfUpBgInkThicknessDto.getProject());
+        }
+        if (StringUtils.isNotEmpty(dfUpBgInkThicknessDto.getColor())) {
+            dfUpBgInkThicknessQueryWrapper.eq("color", dfUpBgInkThicknessDto.getColor());
+        }
+        dfUpBgInkThicknessQueryWrapper.between("test_date",dfUpBgInkThicknessDto.getStartTestDate(),dfUpBgInkThicknessDto.getEndTestDate());
+
+        IPage<DfUpBgInkThickness> page = dfUpBgInkThicknessService.page(new Page<>(dfUpBgInkThicknessDto.getPageIndex(), dfUpBgInkThicknessDto.getPageSize()), dfUpBgInkThicknessQueryWrapper);
+        return R.ok(page);
+    }
+
+
 
 }

@@ -9,7 +9,7 @@ spring:
     min-idle: 5
     #    url: jdbc:mysql://192.168.1.24:3306/df_demo
     #    url: jdbc:mysql://localhost:3306/df_demo_05
-    url: jdbc:mysql://192.168.5.22:3306/boen_qms_j10-4?serverTimezone=UTC
+    url: jdbc:mysql://192.168.5.14:3306/df_demo_05?serverTimezone=UTC
     username: root
     password: root
   servlet:

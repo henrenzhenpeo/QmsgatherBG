@@ -1,6 +1,14 @@
 package com.biel.qmsgather.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.api.R;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfUpBgInkDensity;
+import com.biel.qmsgather.domain.DfUpBgInkThickness;
+import com.biel.qmsgather.domain.dto.DfUpBgInkDensityDto;
+import com.biel.qmsgather.domain.dto.DfUpBgInkThicknessDto;
 import com.biel.qmsgather.service.DfUpBgInkDensityService;
 import com.biel.qmsgather.util.Result;
 import io.swagger.annotations.Api;
@@ -38,6 +46,29 @@ public class DfUpBgInkDensityController {
         }
 
         return new Result(500,"OD密度接口上传失败");
+    }
+
+
+    @PostMapping("/findDfUpBgInkDensity")
+    @ApiOperation(value = "OD密度查询接口")
+    public R findDfUpBgInkDensity(@RequestBody DfUpBgInkDensityDto dfUpBgInkDensityDto) {
+        QueryWrapper<DfUpBgInkDensity> dfUpBgInkDensityQueryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotEmpty(dfUpBgInkDensityDto.getFactory())) {
+            dfUpBgInkDensityQueryWrapper.eq("factory", dfUpBgInkDensityDto.getFactory());
+        }
+        if (StringUtils.isNotEmpty(dfUpBgInkDensityDto.getStage())) {
+            dfUpBgInkDensityQueryWrapper.eq("stage", dfUpBgInkDensityDto.getStage());
+        }
+        if (StringUtils.isNotEmpty(dfUpBgInkDensityDto.getProject())) {
+            dfUpBgInkDensityQueryWrapper.eq("project", dfUpBgInkDensityDto.getProject());
+        }
+        if (StringUtils.isNotEmpty(dfUpBgInkDensityDto.getColor())) {
+            dfUpBgInkDensityQueryWrapper.eq("color", dfUpBgInkDensityDto.getColor());
+        }
+        dfUpBgInkDensityQueryWrapper.between("test_date",dfUpBgInkDensityDto.getStartTestDate(),dfUpBgInkDensityDto.getEndTestDate());
+
+        IPage<DfUpBgInkDensity> page = dfUpBgInkDensityService.page(new Page<>(dfUpBgInkDensityDto.getPageIndex(), dfUpBgInkDensityDto.getPageSize()), dfUpBgInkDensityQueryWrapper);
+        return R.ok(page);
     }
 
 }

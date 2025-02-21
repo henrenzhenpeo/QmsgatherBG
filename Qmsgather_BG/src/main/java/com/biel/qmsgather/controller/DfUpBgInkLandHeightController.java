@@ -1,8 +1,15 @@
 package com.biel.qmsgather.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.api.R;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfUpBgInkDensity;
 import com.biel.qmsgather.domain.DfUpBgInkLandHeight;
+import com.biel.qmsgather.domain.dto.DfUpBgInkDensityDto;
+import com.biel.qmsgather.domain.dto.DfUpBgInkLandHeightDto;
 import com.biel.qmsgather.service.DfUpBgInkLandHeightService;
 import com.biel.qmsgather.util.Result;
 import io.swagger.annotations.Api;
@@ -41,5 +48,27 @@ public class DfUpBgInkLandHeightController {
         return new Result(500,"总厚+积油高度接口上传失败");
     }
 
+
+    @PostMapping("/findDfUpBgInkLandHeight")
+    @ApiOperation(value = "总厚+积油高度查询接口")
+    public R findDfUpBgInkLandHeight(@RequestBody DfUpBgInkLandHeightDto dfUpBgInkLandHeightDto) {
+        QueryWrapper<DfUpBgInkLandHeight> dfUpBgInkLandHeightQueryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotEmpty(dfUpBgInkLandHeightDto.getFactory())) {
+            dfUpBgInkLandHeightQueryWrapper.eq("factory", dfUpBgInkLandHeightDto.getFactory());
+        }
+        if (StringUtils.isNotEmpty(dfUpBgInkLandHeightDto.getStage())) {
+            dfUpBgInkLandHeightQueryWrapper.eq("stage", dfUpBgInkLandHeightDto.getStage());
+        }
+        if (StringUtils.isNotEmpty(dfUpBgInkLandHeightDto.getProject())) {
+            dfUpBgInkLandHeightQueryWrapper.eq("project", dfUpBgInkLandHeightDto.getProject());
+        }
+        if (StringUtils.isNotEmpty(dfUpBgInkLandHeightDto.getColor())) {
+            dfUpBgInkLandHeightQueryWrapper.eq("color", dfUpBgInkLandHeightDto.getColor());
+        }
+        dfUpBgInkLandHeightQueryWrapper.between("test_date",dfUpBgInkLandHeightDto.getStartTestDate(),dfUpBgInkLandHeightDto.getEndTestDate());
+
+        IPage<DfUpBgInkLandHeight> page = dfUpBgInkLandHeightService.page(new Page<>(dfUpBgInkLandHeightDto.getPageIndex(), dfUpBgInkLandHeightDto.getPageSize()), dfUpBgInkLandHeightQueryWrapper);
+        return R.ok(page);
+    }
 
 }
