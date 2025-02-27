@@ -56,29 +56,49 @@ public class DfUpBgLiquidThrowingController {
     }
 
 
-    @PostMapping("/findDfUpBgLiquidThrowing")
+    @GetMapping("/findDfUpBgLiquidThrowing")
     @ApiOperation(value = "bg 液抛查询接口")
-    public R findDfUpBgSandBlast(@RequestBody DfUpBgLiquidThrowingDto dfUpBgLiquidThrowingDto) {
-        QueryWrapper<DfUpBgLiquidThrowing> dfUpBgLiquidThrowingQueryWrapper = new QueryWrapper<>();
-        if (StringUtils.isNotEmpty(dfUpBgLiquidThrowingDto.getProcess())) {
-            dfUpBgLiquidThrowingQueryWrapper.eq("process", dfUpBgLiquidThrowingDto.getProcess());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgLiquidThrowingDto.getFactory())) {
-            dfUpBgLiquidThrowingQueryWrapper.eq("factory", dfUpBgLiquidThrowingDto.getFactory());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgLiquidThrowingDto.getStage())) {
-            dfUpBgLiquidThrowingQueryWrapper.eq("stage", dfUpBgLiquidThrowingDto.getStage());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgLiquidThrowingDto.getProject())) {
-            dfUpBgLiquidThrowingQueryWrapper.eq("project", dfUpBgLiquidThrowingDto.getProject());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgLiquidThrowingDto.getColor())) {
-            dfUpBgLiquidThrowingQueryWrapper.eq("color", dfUpBgLiquidThrowingDto.getColor());
-        }
-        dfUpBgLiquidThrowingQueryWrapper.between("test_date",dfUpBgLiquidThrowingDto.getStartTestDate(),dfUpBgLiquidThrowingDto.getEndTestDate());
+    public R findDfUpBgLiquidThrowing(
+            @RequestParam(value = "process", required = false) String process,
+            @RequestParam(value = "factory", required = false) String factory,
+            @RequestParam(value = "stage", required = false) String stage,
+            @RequestParam(value = "project", required = false) String project,
+            @RequestParam(value = "color", required = false) String color,
+            @RequestParam(value = "startTestDate", required = false) String startTestDate,
+            @RequestParam(value = "endTestDate", required = false) String endTestDate,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "limit", defaultValue = "10") int limit) {
 
-        IPage<DfUpBgLiquidThrowing> page = dfUpBgLiquidThrowingService.page(new Page<>(dfUpBgLiquidThrowingDto.getPageIndex(), dfUpBgLiquidThrowingDto.getPageSize()), dfUpBgLiquidThrowingQueryWrapper);
-        return R.ok(page);
+        // 创建查询条件
+        QueryWrapper<DfUpBgLiquidThrowing> dfUpBgLiquidThrowingQueryWrapper = new QueryWrapper<>();
+
+        // 构建查询条件
+        if (StringUtils.isNotEmpty(process)) {
+            dfUpBgLiquidThrowingQueryWrapper.eq("process", process);
+        }
+        if (StringUtils.isNotEmpty(factory)) {
+            dfUpBgLiquidThrowingQueryWrapper.eq("factory", factory);
+        }
+        if (StringUtils.isNotEmpty(stage)) {
+            dfUpBgLiquidThrowingQueryWrapper.eq("stage", stage);
+        }
+        if (StringUtils.isNotEmpty(project)) {
+            dfUpBgLiquidThrowingQueryWrapper.eq("project", project);
+        }
+        if (StringUtils.isNotEmpty(color)) {
+            dfUpBgLiquidThrowingQueryWrapper.eq("color", color);
+        }
+        if (StringUtils.isNotEmpty(startTestDate) && StringUtils.isNotEmpty(endTestDate)) {
+            dfUpBgLiquidThrowingQueryWrapper.between("test_date", startTestDate, endTestDate);
+        }
+
+        // 执行分页查询
+        IPage<DfUpBgLiquidThrowing> pageResult = dfUpBgLiquidThrowingService.page(
+                new Page<>(page, limit),
+                dfUpBgLiquidThrowingQueryWrapper
+        );
+
+        return R.ok(pageResult);
     }
 
 
