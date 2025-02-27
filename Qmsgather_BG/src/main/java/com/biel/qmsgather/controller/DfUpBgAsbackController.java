@@ -47,29 +47,49 @@ public class DfUpBgAsbackController {
         return new Result(500, "BG AS后接口上传失败");
     }
 
-    @PostMapping("/findDfUpBgAsback")
+    @GetMapping("/findDfUpBgAsback")
     @ApiOperation(value = "BG AS后查询接口")
-    public R findDfUpBgZhongkaoBack(@RequestBody DfUpBgAsbackDto dfUpBgAsbackDto) {
-        QueryWrapper<DfUpBgAsback> dfUpBgAsbackQueryWrapper = new QueryWrapper<>();
-        if (StringUtils.isNotEmpty(dfUpBgAsbackDto.getProcess())) {
-            dfUpBgAsbackQueryWrapper.eq("process", dfUpBgAsbackDto.getProcess());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgAsbackDto.getFactory())) {
-            dfUpBgAsbackQueryWrapper.eq("factory", dfUpBgAsbackDto.getFactory());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgAsbackDto.getStage())) {
-            dfUpBgAsbackQueryWrapper.eq("stage", dfUpBgAsbackDto.getStage());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgAsbackDto.getProject())) {
-            dfUpBgAsbackQueryWrapper.eq("project", dfUpBgAsbackDto.getProject());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgAsbackDto.getColor())) {
-            dfUpBgAsbackQueryWrapper.eq("color", dfUpBgAsbackDto.getColor());
-        }
-        dfUpBgAsbackQueryWrapper.between("test_date",dfUpBgAsbackDto.getStartTestDate(),dfUpBgAsbackDto.getEndTestDate());
+    public R findDfUpBgAsback(
+            @RequestParam(value = "process", required = false) String process,
+            @RequestParam(value = "factory", required = false) String factory,
+            @RequestParam(value = "stage", required = false) String stage,
+            @RequestParam(value = "project", required = false) String project,
+            @RequestParam(value = "color", required = false) String color,
+            @RequestParam(value = "startTestDate", required = false) String startTestDate,
+            @RequestParam(value = "endTestDate", required = false) String endTestDate,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "limit", defaultValue = "10") int limit) {
 
-        IPage<DfUpBgAsback> page = dfUpBgAsbackService.page(new Page<>(dfUpBgAsbackDto.getPageIndex(), dfUpBgAsbackDto.getPageSize()), dfUpBgAsbackQueryWrapper);
-        return R.ok(page);
+        // 创建查询条件
+        QueryWrapper<DfUpBgAsback> dfUpBgAsbackQueryWrapper = new QueryWrapper<>();
+
+        // 构建查询条件
+        if (StringUtils.isNotEmpty(process)) {
+            dfUpBgAsbackQueryWrapper.eq("process", process);
+        }
+        if (StringUtils.isNotEmpty(factory)) {
+            dfUpBgAsbackQueryWrapper.eq("factory", factory);
+        }
+        if (StringUtils.isNotEmpty(stage)) {
+            dfUpBgAsbackQueryWrapper.eq("stage", stage);
+        }
+        if (StringUtils.isNotEmpty(project)) {
+            dfUpBgAsbackQueryWrapper.eq("project", project);
+        }
+        if (StringUtils.isNotEmpty(color)) {
+            dfUpBgAsbackQueryWrapper.eq("color", color);
+        }
+        if (StringUtils.isNotEmpty(startTestDate) && StringUtils.isNotEmpty(endTestDate)) {
+            dfUpBgAsbackQueryWrapper.between("test_date", startTestDate, endTestDate);
+        }
+
+        // 执行分页查询
+        IPage<DfUpBgAsback> pageResult = dfUpBgAsbackService.page(
+                new Page<>(page, limit),
+                dfUpBgAsbackQueryWrapper
+        );
+
+        return R.ok(pageResult);
     }
 
 

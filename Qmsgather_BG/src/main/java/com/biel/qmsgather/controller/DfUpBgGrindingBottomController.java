@@ -49,30 +49,51 @@ public class DfUpBgGrindingBottomController {
     }
 
 
-    @PostMapping("/findDfUpBgGrindingBottom")
+    @GetMapping("/findDfUpBgGrindingBottom")
     @ApiOperation(value = "BG 磨底查询接口")
-    public R findDfUpBgGrindingBottom(@RequestBody DfUpBgGrindingBottomDto dfUpBgGrindingBottomDto) {
-        QueryWrapper<DfUpBgGrindingBottom> dfUpBgGrindingBottomQueryWrapper = new QueryWrapper<>();
-        if (StringUtils.isNotEmpty(dfUpBgGrindingBottomDto.getProcess())) {
-            dfUpBgGrindingBottomQueryWrapper.eq("process", dfUpBgGrindingBottomDto.getProcess());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgGrindingBottomDto.getFactory())) {
-            dfUpBgGrindingBottomQueryWrapper.eq("factory", dfUpBgGrindingBottomDto.getFactory());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgGrindingBottomDto.getStage())) {
-            dfUpBgGrindingBottomQueryWrapper.eq("stage", dfUpBgGrindingBottomDto.getStage());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgGrindingBottomDto.getProject())) {
-            dfUpBgGrindingBottomQueryWrapper.eq("project", dfUpBgGrindingBottomDto.getProject());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgGrindingBottomDto.getColor())) {
-            dfUpBgGrindingBottomQueryWrapper.eq("color", dfUpBgGrindingBottomDto.getColor());
-        }
-        dfUpBgGrindingBottomQueryWrapper.between("test_date",dfUpBgGrindingBottomDto.getStartTestDate(),dfUpBgGrindingBottomDto.getEndTestDate());
+    public R findDfUpBgGrindingBottom(
+            @RequestParam(value = "process", required = false) String process,
+            @RequestParam(value = "factory", required = false) String factory,
+            @RequestParam(value = "stage", required = false) String stage,
+            @RequestParam(value = "project", required = false) String project,
+            @RequestParam(value = "color", required = false) String color,
+            @RequestParam(value = "startTestDate", required = false) String startTestDate,
+            @RequestParam(value = "endTestDate", required = false) String endTestDate,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "limit", defaultValue = "10") int limit) {
 
-        IPage<DfUpBgGrindingBottom> page = dfUpBgGrindingBottomService.page(new Page<>(dfUpBgGrindingBottomDto.getPageIndex(), dfUpBgGrindingBottomDto.getPageSize()), dfUpBgGrindingBottomQueryWrapper);
-        return R.ok(page);
+        // 创建查询条件
+        QueryWrapper<DfUpBgGrindingBottom> dfUpBgGrindingBottomQueryWrapper = new QueryWrapper<>();
+
+        // 构建查询条件
+        if (StringUtils.isNotEmpty(process)) {
+            dfUpBgGrindingBottomQueryWrapper.eq("process", process);
+        }
+        if (StringUtils.isNotEmpty(factory)) {
+            dfUpBgGrindingBottomQueryWrapper.eq("factory", factory);
+        }
+        if (StringUtils.isNotEmpty(stage)) {
+            dfUpBgGrindingBottomQueryWrapper.eq("stage", stage);
+        }
+        if (StringUtils.isNotEmpty(project)) {
+            dfUpBgGrindingBottomQueryWrapper.eq("project", project);
+        }
+        if (StringUtils.isNotEmpty(color)) {
+            dfUpBgGrindingBottomQueryWrapper.eq("color", color);
+        }
+        if (StringUtils.isNotEmpty(startTestDate) && StringUtils.isNotEmpty(endTestDate)) {
+            dfUpBgGrindingBottomQueryWrapper.between("test_date", startTestDate, endTestDate);
+        }
+
+        // 执行分页查询
+        IPage<DfUpBgGrindingBottom> pageResult = dfUpBgGrindingBottomService.page(
+                new Page<>(page, limit),
+                dfUpBgGrindingBottomQueryWrapper
+        );
+
+        return R.ok(pageResult);
     }
+
 
 
 }

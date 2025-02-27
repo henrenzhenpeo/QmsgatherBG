@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpBgInkThickness2Mapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfUpBgInkThickness2">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="process" column="process" jdbcType="VARCHAR"/>
+            <result property="factory" column="factory" jdbcType="VARCHAR"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="color" column="color" jdbcType="VARCHAR"/>
+            <result property="stage" column="stage" jdbcType="VARCHAR"/>
+            <result property="testDate" column="test_date" jdbcType="VARCHAR"/>
+            <result property="namePoint" column="name_point" jdbcType="VARCHAR"/>
+            <result property="coatingLayersLog" column="coating_layers_log" jdbcType="VARCHAR"/>
+            <result property="testTimeLog" column="test_time_log" jdbcType="VARCHAR"/>
+            <result property="trueValueLog" column="true_value_log" jdbcType="VARCHAR"/>
+            <result property="stateLog" column="state_log" jdbcType="VARCHAR"/>
+            <result property="machineCodeLog" column="machine_code_log" jdbcType="VARCHAR"/>
+            <result property="coatingLayersOne" column="coating_layers_one" jdbcType="VARCHAR"/>
+            <result property="testTimeOne" column="test_time_one" jdbcType="VARCHAR"/>
+            <result property="trueValueOne" column="true_value_one" jdbcType="VARCHAR"/>
+            <result property="stateOne" column="state_one" jdbcType="VARCHAR"/>
+            <result property="machineCodeOne" column="machine_code_one" jdbcType="VARCHAR"/>
+            <result property="coatingLayersTwo" column="coating_layers_two" jdbcType="VARCHAR"/>
+            <result property="testTimeTwo" column="test_time_two" jdbcType="VARCHAR"/>
+            <result property="trueValueTwo" column="true_value_two" jdbcType="VARCHAR"/>
+            <result property="stateTwo" column="state_two" jdbcType="VARCHAR"/>
+            <result property="machineCodeTwo" column="machine_code_two" jdbcType="VARCHAR"/>
+            <result property="coatingLayersThree" column="coating_layers_three" jdbcType="VARCHAR"/>
+            <result property="testTimeThree" column="test_time_three" jdbcType="VARCHAR"/>
+            <result property="trueValueThree" column="true_value_three" jdbcType="VARCHAR"/>
+            <result property="stateThree" column="state_three" jdbcType="VARCHAR"/>
+            <result property="machineCodeThree" column="machine_code_three" jdbcType="VARCHAR"/>
+            <result property="coatingLayersFour" column="coating_layers_four" jdbcType="VARCHAR"/>
+            <result property="testTimeFour" column="test_time_four" jdbcType="VARCHAR"/>
+            <result property="trueValueFour" column="true_value_four" jdbcType="VARCHAR"/>
+            <result property="stateFour" column="state_four" jdbcType="VARCHAR"/>
+            <result property="machineCodeFour" column="machine_code_four" jdbcType="VARCHAR"/>
+            <result property="coatingLayersFive" column="coating_layers_five" jdbcType="VARCHAR"/>
+            <result property="testTimeFive" column="test_time_five" jdbcType="VARCHAR"/>
+            <result property="trueValueFive" column="true_value_five" jdbcType="VARCHAR"/>
+            <result property="stateFive" column="state_five" jdbcType="VARCHAR"/>
+            <result property="machineCodeFive" column="machine_code_five" jdbcType="VARCHAR"/>
+            <result property="coatingLayersSix" column="coating_layers_six" jdbcType="VARCHAR"/>
+            <result property="testTimeSix" column="test_time_six" jdbcType="VARCHAR"/>
+            <result property="trueValueSix" column="true_value_six" jdbcType="VARCHAR"/>
+            <result property="stateSix" column="state_six" jdbcType="VARCHAR"/>
+            <result property="machineCodeSix" column="machine_code_six" jdbcType="VARCHAR"/>
+            <result property="coatingLayersVarnish" column="coating_layers_varnish" jdbcType="VARCHAR"/>
+            <result property="testTimeVarnish" column="test_time_varnish" jdbcType="VARCHAR"/>
+            <result property="trueValueVarnish" column="true_value_varnish" jdbcType="VARCHAR"/>
+            <result property="stateVarnish" column="state_varnish" jdbcType="VARCHAR"/>
+            <result property="machineCodeVarnish" column="machine_code_varnish" jdbcType="VARCHAR"/>
+            <result property="coatingLayersSeven" column="coating_layers_seven" jdbcType="VARCHAR"/>
+            <result property="testTimeSeven" column="test_time_seven" jdbcType="VARCHAR"/>
+            <result property="trueValueSeven" column="true_value_seven" jdbcType="VARCHAR"/>
+            <result property="stateSeven" column="state_seven" jdbcType="VARCHAR"/>
+            <result property="machineCodeSeven" column="machine_code_seven" jdbcType="VARCHAR"/>
+            <result property="updateName" column="update_name" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,process,factory,
+        project,color,stage,
+        test_date,name_point,coating_layers_log,
+        test_time_log,true_value_log,state_log,
+        machine_code_log,coating_layers_one,test_time_one,
+        true_value_one,state_one,machine_code_one,
+        coating_layers_two,test_time_two,true_value_two,
+        state_two,machine_code_two,coating_layers_three,
+        test_time_three,true_value_three,state_three,
+        machine_code_three,coating_layers_four,test_time_four,
+        true_value_four,state_four,machine_code_four,
+        coating_layers_five,test_time_five,true_value_five,
+        state_five,machine_code_five,coating_layers_six,
+        test_time_six,true_value_six,state_six,
+        machine_code_six,coating_layers_varnish,test_time_varnish,
+        true_value_varnish,state_varnish,machine_code_varnish,
+        coating_layers_seven,test_time_seven,true_value_seven,
+        state_seven,machine_code_seven,update_name,
+        batch_id
+    </sql>
+</mapper>

@@ -56,29 +56,49 @@ public class DfUpBgDripController {
     }
 
 
-    @PostMapping("/findDfUpBgDrip")
+    @GetMapping("/findDfUpBgDrip")
     @ApiOperation(value = "水滴角查询接口")
-    public R findDfUpBgDrip(@RequestBody DfUpBgDripDto dfUpBgDripDto) {
-        QueryWrapper<DfUpBgDrip> dfUpBgDripQueryWrapper = new QueryWrapper<>();
-        if (StringUtils.isNotEmpty(dfUpBgDripDto.getProcess())) {
-            dfUpBgDripQueryWrapper.eq("process", dfUpBgDripDto.getProcess());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgDripDto.getFactory())) {
-            dfUpBgDripQueryWrapper.eq("factory", dfUpBgDripDto.getFactory());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgDripDto.getStage())) {
-            dfUpBgDripQueryWrapper.eq("stage", dfUpBgDripDto.getStage());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgDripDto.getProject())) {
-            dfUpBgDripQueryWrapper.eq("project", dfUpBgDripDto.getProject());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgDripDto.getColor())) {
-            dfUpBgDripQueryWrapper.eq("color", dfUpBgDripDto.getColor());
-        }
-        dfUpBgDripQueryWrapper.between("test_date",dfUpBgDripDto.getStartTestDate(),dfUpBgDripDto.getEndTestDate());
+    public R findDfUpBgDrip(
+            @RequestParam(value = "process", required = false) String process,
+            @RequestParam(value = "factory", required = false) String factory,
+            @RequestParam(value = "stage", required = false) String stage,
+            @RequestParam(value = "project", required = false) String project,
+            @RequestParam(value = "color", required = false) String color,
+            @RequestParam(value = "startTestDate", required = false) String startTestDate,
+            @RequestParam(value = "endTestDate", required = false) String endTestDate,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "limit", defaultValue = "10") int limit) {
 
-        IPage<DfUpBgDrip> page = dfUpBgDripService.page(new Page<>(dfUpBgDripDto.getPageIndex(), dfUpBgDripDto.getPageSize()), dfUpBgDripQueryWrapper);
-        return R.ok(page);
+        // 创建查询条件
+        QueryWrapper<DfUpBgDrip> dfUpBgDripQueryWrapper = new QueryWrapper<>();
+
+        // 构建查询条件
+        if (StringUtils.isNotEmpty(process)) {
+            dfUpBgDripQueryWrapper.eq("process", process);
+        }
+        if (StringUtils.isNotEmpty(factory)) {
+            dfUpBgDripQueryWrapper.eq("factory", factory);
+        }
+        if (StringUtils.isNotEmpty(stage)) {
+            dfUpBgDripQueryWrapper.eq("stage", stage);
+        }
+        if (StringUtils.isNotEmpty(project)) {
+            dfUpBgDripQueryWrapper.eq("project", project);
+        }
+        if (StringUtils.isNotEmpty(color)) {
+            dfUpBgDripQueryWrapper.eq("color", color);
+        }
+        if (StringUtils.isNotEmpty(startTestDate) && StringUtils.isNotEmpty(endTestDate)) {
+            dfUpBgDripQueryWrapper.between("test_date", startTestDate, endTestDate);
+        }
+
+        // 分页查询
+        IPage<DfUpBgDrip> pageResult = dfUpBgDripService.page(
+                new Page<>(page, limit),
+                dfUpBgDripQueryWrapper
+        );
+
+        return R.ok(pageResult);
     }
 
 

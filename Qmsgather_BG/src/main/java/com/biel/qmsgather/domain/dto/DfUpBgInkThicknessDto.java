@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 public class DfUpBgInkThicknessDto {
 
-    private Integer pageIndex;
-    private Integer pageSize;
+    private Integer page;
+    private Integer limit;
 
     /**
      * 工厂

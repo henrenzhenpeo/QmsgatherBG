@@ -6,8 +6,8 @@ import lombok.Data;
 public class DfUpBgDripDto {
 
 
-    private Integer pageIndex;
-    private Integer pageSize;
+    private Integer page;
+    private Integer limit;
 
     /**
      * 工序名称
