@@ -37,6 +37,8 @@ public class DfUpBgLiquidThrowingDto {
      * 日期（yyyy-mm-dd）
      */
     private String startTestDate;
+
+
     private String endTestDate;
 
 }

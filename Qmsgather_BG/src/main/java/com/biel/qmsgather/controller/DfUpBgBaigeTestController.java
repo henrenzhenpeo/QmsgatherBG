@@ -3,9 +3,11 @@ package com.biel.qmsgather.controller;
 import com.biel.qmsgather.domain.DfUpBgBaigeTest;
 import com.biel.qmsgather.domain.DfUpBgBaigeTestImg;
 import com.biel.qmsgather.domain.DfUpBgDrip;
+import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
 import com.biel.qmsgather.service.DfUpBgBaigeTestImgService;
 import com.biel.qmsgather.service.DfUpBgBaigeTestService;
 import com.biel.qmsgather.util.Result;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,5 +131,55 @@ public class DfUpBgBaigeTestController {
 
         return ResponseEntity.ok(response);
     }
+
+
+
+
+
+
+
+    @PostMapping("/uploadExcelWithJson")
+    @ApiOperation(value = "bg 百格测试和煮水百格接口上传Excel和JSON数据")
+    public Result uploadExcelWithJson(@RequestParam("file") MultipartFile file,
+                                      @RequestParam("jsonData") String jsonData) {
+        try {
+
+            String batchId = dfUpBgBaigeTestImgService.getMaxBatchId();
+            // 解析JSON数据
+            DfUpBgExcelDto baseInfo = new ObjectMapper().readValue(jsonData, DfUpBgExcelDto.class);
+
+            String baseInfoStr = "ss";
+            // 调用服务处理Excel和JSON数据
+            int result = dfUpBgBaigeTestService.parseExcelFile(file, baseInfo, batchId);
+          Map<String, Object> resultMap =  dfUpBgBaigeTestImgService.extractAndSaveImagesFromExcel(file, baseInfoStr, batchId);
+
+            // 根据结果返回成功或失败
+            return result > 0
+                    ? new Result(200, "bg 液抛Excel和JSON数据上传成功")
+                    : new Result(500, "bg 液抛Excel和JSON数据上传失败");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(500, "bg 液抛Excel和JSON数据上传失败: " + e.getMessage());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

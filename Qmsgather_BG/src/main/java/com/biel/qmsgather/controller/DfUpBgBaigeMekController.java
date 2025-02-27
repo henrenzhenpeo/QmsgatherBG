@@ -3,9 +3,11 @@ package com.biel.qmsgather.controller;
 import com.biel.qmsgather.domain.DfUpBgBaigeMek;
 import com.biel.qmsgather.domain.DfUpBgBaigeTest;
 import com.biel.qmsgather.domain.DfUpBgBaigeTestImg;
+import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
 import com.biel.qmsgather.service.DfUpBgBaigeMekService;
 import com.biel.qmsgather.service.DfUpBgBaigeTestImgService;
 import com.biel.qmsgather.util.Result;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,6 +126,46 @@ public class DfUpBgBaigeMekController {
 
         return ResponseEntity.ok(response);
     }
+
+
+
+
+
+    @PostMapping("/uploadExcelWithJson")
+    @ApiOperation(value = "bg MEK接口上传Excel和JSON数据")
+    public Result uploadExcelWithJson(@RequestParam("file") MultipartFile file,
+                                      @RequestParam("jsonData") String jsonData) {
+        try {
+
+            String batchId = dfUpBgBaigeTestImgService.getMaxBatchId();
+            // 解析JSON数据
+            DfUpBgExcelDto baseInfo = new ObjectMapper().readValue(jsonData, DfUpBgExcelDto.class);
+
+            // 调用服务处理Excel和JSON数据
+            boolean result = dfUpBgBaigeMekService.saveExcelWithJson(file, baseInfo);
+
+            // 根据结果返回成功或失败
+            return result
+                    ? new Result(200, "bg 液抛Excel和JSON数据上传成功")
+                    : new Result(500, "bg 液抛Excel和JSON数据上传失败");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(500, "bg 液抛Excel和JSON数据上传失败: " + e.getMessage());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

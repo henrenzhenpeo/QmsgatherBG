@@ -8,14 +8,17 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfUpBgInkLandHeight;
 import com.biel.qmsgather.domain.DfUpBgInkThickness;
 import com.biel.qmsgather.domain.DfUpBgSandBlast;
+import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
 import com.biel.qmsgather.domain.dto.DfUpBgInkThicknessDto;
 import com.biel.qmsgather.domain.dto.DfUpBgSandBlastDto;
 import com.biel.qmsgather.service.DfUpBgSandBlastService;
 import com.biel.qmsgather.util.Result;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -74,6 +77,42 @@ public class DfUpBgSandBlastController {
         IPage<DfUpBgSandBlast> page = dfUpBgInkLandHeightList.page(new Page<>(dfUpBgSandBlastDto.getPageIndex(), dfUpBgSandBlastDto.getPageSize()), dfUpBgSandBlastQueryWrapper);
         return R.ok(page);
     }
+
+
+
+
+    @PostMapping("/uploadExcelWithJson")
+    @ApiOperation(value = "bg 液抛接口上传Excel和JSON数据")
+    public Result uploadExcelWithJson(@RequestParam("file") MultipartFile file,
+                                      @RequestParam("jsonData") String jsonData) {
+        try {
+            // 解析JSON数据
+            DfUpBgExcelDto baseInfo = new ObjectMapper().readValue(jsonData, DfUpBgExcelDto.class);
+
+            // 调用服务处理Excel和JSON数据
+            boolean result = dfUpBgInkLandHeightList.saveExcelWithJson(file, baseInfo);
+
+            if (result) {
+                return new Result(200, "bg 液抛Excel和JSON数据上传成功");
+            } else {
+                return new Result(500, "bg 液抛Excel和JSON数据上传失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(500, "bg 液抛Excel和JSON数据上传失败: " + e.getMessage());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

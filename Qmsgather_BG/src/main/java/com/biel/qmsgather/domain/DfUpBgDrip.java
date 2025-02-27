@@ -120,6 +120,33 @@ public class DfUpBgDrip implements Serializable {
      */
     private String batchId;
 
+
+
+    /**
+     * 测试数量
+     */
+    private String testNumber;
+
+    /**
+     * 类型
+     */
+    private String type;
+
+    /**
+     * Excel处理
+     */
+    private String excelProcess;
+
+    /**
+     * Excel列表
+     */
+    private String excelList;
+
+    /**
+     * 备注
+     */
+    private String noted;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

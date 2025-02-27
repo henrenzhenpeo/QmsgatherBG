@@ -2,6 +2,11 @@ package com.biel.qmsgather.service;
 
 import com.biel.qmsgather.domain.DfUpBgBaigeTest;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
 * @author dafenqi
@@ -11,5 +16,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface DfUpBgBaigeTestService extends IService<DfUpBgBaigeTest> {
 
     String getMaxBatchId();
+
+ int parseExcelFile(MultipartFile file, DfUpBgExcelDto baseInfo, String batchId) throws IOException;
+
+
+
+
+
 
 }

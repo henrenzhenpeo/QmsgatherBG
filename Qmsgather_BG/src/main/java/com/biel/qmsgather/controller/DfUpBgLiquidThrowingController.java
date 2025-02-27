@@ -8,16 +8,22 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfUpBgInkLandHeight;
 import com.biel.qmsgather.domain.DfUpBgLiquidThrowing;
 import com.biel.qmsgather.domain.DfUpBgSandBlast;
+import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
 import com.biel.qmsgather.domain.dto.DfUpBgLiquidThrowingDto;
 import com.biel.qmsgather.domain.dto.DfUpBgSandBlastDto;
 import com.biel.qmsgather.service.DfUpBgLiquidThrowingService;
 import com.biel.qmsgather.util.Result;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/bg/dfUpBgLiquidThrowing")
@@ -74,5 +80,57 @@ public class DfUpBgLiquidThrowingController {
         IPage<DfUpBgLiquidThrowing> page = dfUpBgLiquidThrowingService.page(new Page<>(dfUpBgLiquidThrowingDto.getPageIndex(), dfUpBgLiquidThrowingDto.getPageSize()), dfUpBgLiquidThrowingQueryWrapper);
         return R.ok(page);
     }
+
+
+
+
+
+// ... 现有代码 ...
+
+    @PostMapping("/uploadExcelWithJson")
+    @ApiOperation(value = "bg 液抛接口上传Excel和JSON数据")
+    public Result uploadExcelWithJson(@RequestParam("file") MultipartFile file,
+                                      @RequestParam("jsonData") String jsonData) {
+        try {
+            // 解析JSON数据
+            DfUpBgExcelDto baseInfo = new ObjectMapper().readValue(jsonData, DfUpBgExcelDto.class);
+
+            // 调用服务处理Excel和JSON数据
+            boolean result = dfUpBgLiquidThrowingService.saveExcelWithJson(file, baseInfo);
+
+            if (result) {
+                return new Result(200, "bg 液抛Excel和JSON数据上传成功");
+            } else {
+                return new Result(500, "bg 液抛Excel和JSON数据上传失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(500, "bg 液抛Excel和JSON数据上传失败: " + e.getMessage());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

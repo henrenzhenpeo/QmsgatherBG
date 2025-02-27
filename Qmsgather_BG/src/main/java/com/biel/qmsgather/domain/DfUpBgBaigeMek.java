@@ -60,6 +60,10 @@ public class DfUpBgBaigeMek implements Serializable {
      */
     private String twoCode;
 
+
+
+    private String no;
+
     /**
      * 测试时间（hh:mm）
      */

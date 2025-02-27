@@ -2,6 +2,9 @@ package com.biel.qmsgather.service;
 
 import com.biel.qmsgather.domain.DfUpBgLiquidThrowing;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
+import com.biel.qmsgather.domain.dto.DfUpBgLiquidThrowingDto;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
 * @author dafenqi
@@ -10,4 +13,32 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface DfUpBgLiquidThrowingService extends IService<DfUpBgLiquidThrowing> {
     String getMaxBatchId();
+
+
+
+    /**
+     * 保存Excel和JSON数据
+     * @param file Excel文件
+     * @param baseInfo 基础信息DTO
+     * @return 是否保存成功
+     */
+    boolean saveExcelWithJson(MultipartFile file, DfUpBgExcelDto baseInfo);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -2,6 +2,10 @@ package com.biel.qmsgather.service;
 
 import com.biel.qmsgather.domain.DfUpBgBaigeTestImg;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Map;
 
 /**
 * @author dafenqi
@@ -10,4 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface DfUpBgBaigeTestImgService extends IService<DfUpBgBaigeTestImg> {
     String getMaxBatchId();
+
+
+    public Map<String, Object> extractAndSaveImagesFromExcel(MultipartFile excelFile, String process, String testDate) throws IOException;
 }
