@@ -1,0 +1,801 @@
+2025-02-26 09:46:02.161  INFO 9224 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 9224 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 09:46:02.162  INFO 9224 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 09:46:02.904  INFO 9224 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 09:46:02.910  INFO 9224 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 09:46:02.910  INFO 9224 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 09:46:02.910  INFO 9224 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 09:46:02.967  INFO 9224 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 09:46:02.967  INFO 9224 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 781 ms
+2025-02-26 09:46:03.577  INFO 9224 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 09:46:03.723  INFO 9224 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 09:46:03.747  INFO 9224 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 09:46:03.748  INFO 9224 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 09:46:03.758  INFO 9224 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 09:46:03.773  INFO 9224 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 09:46:03.867  INFO 9224 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 09:46:03.870  INFO 9224 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 09:46:03.894  INFO 9224 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 09:46:03.901  INFO 9224 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 09:46:03.924  INFO 9224 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 09:46:03.932  INFO 9224 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 09:46:03.937  INFO 9224 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 09:46:03.951  INFO 9224 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 2.062 seconds (JVM running for 2.49)
+2025-02-26 09:47:30.117  INFO 9224 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 09:47:30.117  INFO 9224 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 09:47:30.118  INFO 9224 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 09:47:30.132 ERROR 9224 --- [http-nio-1234-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.multipart.MultipartException: Current request is not a multipart request] with root cause
+
+org.springframework.web.multipart.MultipartException: Current request is not a multipart request
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValueInternal(RequestParamMethodArgumentResolver.java:210)
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValue(RequestParamMethodArgumentResolver.java:193)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:114)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+2025-02-26 09:54:08.587 ERROR 9224 --- [http-nio-1234-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.multipart.MultipartException: Current request is not a multipart request] with root cause
+
+org.springframework.web.multipart.MultipartException: Current request is not a multipart request
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValueInternal(RequestParamMethodArgumentResolver.java:210)
+	at org.springframework.web.method.annotation.RequestParamMethodArgumentResolver.handleMissingValue(RequestParamMethodArgumentResolver.java:193)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:114)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+2025-02-26 09:55:20.191  INFO 11920 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 11920 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 09:55:20.193  INFO 11920 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 09:55:20.823  INFO 11920 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 09:55:20.828  INFO 11920 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 09:55:20.828  INFO 11920 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 09:55:20.828  INFO 11920 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 09:55:20.881  INFO 11920 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 09:55:20.881  INFO 11920 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 664 ms
+2025-02-26 09:55:21.395  INFO 11920 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 09:55:21.519  INFO 11920 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 09:55:21.541  INFO 11920 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 09:55:21.541  INFO 11920 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 09:55:21.550  INFO 11920 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 09:55:21.563  INFO 11920 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 09:55:21.637  INFO 11920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 09:55:21.639  INFO 11920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 09:55:21.662  INFO 11920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 09:55:21.669  INFO 11920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 09:55:21.689  INFO 11920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 09:55:21.695  INFO 11920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 09:55:21.699  INFO 11920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 09:55:21.709  INFO 11920 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.747 seconds (JVM running for 2.124)
+2025-02-26 09:55:27.145  INFO 11920 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 09:55:27.145  INFO 11920 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 09:55:27.146  INFO 11920 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 09:55:38.447  INFO 13508 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 13508 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 09:55:38.449  INFO 13508 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 09:55:39.129  INFO 13508 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 09:55:39.136  INFO 13508 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 09:55:39.136  INFO 13508 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 09:55:39.136  INFO 13508 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 09:55:39.197  INFO 13508 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 09:55:39.197  INFO 13508 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 726 ms
+2025-02-26 09:55:39.756  INFO 13508 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 09:55:39.879  INFO 13508 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 09:55:39.902  INFO 13508 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 09:55:39.902  INFO 13508 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 09:55:39.912  INFO 13508 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 09:55:39.926  INFO 13508 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 09:55:40.011  INFO 13508 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 09:55:40.014  INFO 13508 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 09:55:40.034  INFO 13508 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 09:55:40.040  INFO 13508 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 09:55:40.061  INFO 13508 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 09:55:40.067  INFO 13508 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 09:55:40.071  INFO 13508 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 09:55:40.081  INFO 13508 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.851 seconds (JVM running for 2.228)
+2025-02-26 09:55:50.028  INFO 13508 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 09:55:50.028  INFO 13508 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 09:55:50.029  INFO 13508 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-02-26 09:55:50.038  WARN 13508 --- [http-nio-1234-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/json' not supported]
+2025-02-26 10:06:49.809  INFO 21752 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 21752 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 10:06:49.811  INFO 21752 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 10:06:50.447  INFO 21752 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 10:06:50.452  INFO 21752 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 10:06:50.453  INFO 21752 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 10:06:50.453  INFO 21752 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 10:06:50.502  INFO 21752 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 10:06:50.503  INFO 21752 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 666 ms
+2025-02-26 10:06:51.021  INFO 21752 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 10:06:51.150  INFO 21752 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 10:06:51.172  INFO 21752 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 10:06:51.172  INFO 21752 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 10:06:51.181  INFO 21752 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 10:06:51.193  INFO 21752 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 10:06:51.267  INFO 21752 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 10:06:51.270  INFO 21752 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 10:06:51.292  INFO 21752 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 10:06:51.299  INFO 21752 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 10:06:51.319  INFO 21752 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 10:06:51.323  INFO 21752 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 10:06:51.327  INFO 21752 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 10:06:51.338  INFO 21752 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.755 seconds (JVM running for 2.126)
+2025-02-26 10:45:36.637  INFO 22476 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 22476 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 10:45:36.639  INFO 22476 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 10:45:37.318  INFO 22476 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 10:45:37.323  INFO 22476 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 10:45:37.324  INFO 22476 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 10:45:37.324  INFO 22476 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 10:45:37.380  INFO 22476 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 10:45:37.380  INFO 22476 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 718 ms
+2025-02-26 10:45:37.911  INFO 22476 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 10:45:38.039  INFO 22476 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 10:45:38.062  INFO 22476 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 10:45:38.062  INFO 22476 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 10:45:38.073  INFO 22476 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 10:45:38.087  INFO 22476 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 10:45:38.175  INFO 22476 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 10:45:38.178  INFO 22476 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 10:45:38.198  INFO 22476 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 10:45:38.205  INFO 22476 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 10:45:38.224  INFO 22476 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 10:45:38.230  INFO 22476 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 10:45:38.234  INFO 22476 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 10:45:38.245  INFO 22476 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.865 seconds (JVM running for 2.268)
+2025-02-26 10:47:16.074  INFO 21328 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 21328 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 10:47:16.075  INFO 21328 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 10:47:16.738  INFO 21328 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 10:47:16.743  INFO 21328 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 10:47:16.743  INFO 21328 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 10:47:16.744  INFO 21328 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 10:47:16.796  INFO 21328 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 10:47:16.797  INFO 21328 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 698 ms
+2025-02-26 10:47:17.317  INFO 21328 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 10:47:17.451  INFO 21328 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 10:47:17.475  INFO 21328 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 10:47:17.475  INFO 21328 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 10:47:17.485  INFO 21328 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 10:47:17.499  INFO 21328 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 10:47:17.577  INFO 21328 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 10:47:17.579  INFO 21328 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 10:47:17.600  INFO 21328 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 10:47:17.607  INFO 21328 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 10:47:17.627  INFO 21328 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 10:47:17.633  INFO 21328 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 10:47:17.638  INFO 21328 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 10:47:17.648  INFO 21328 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.819 seconds (JVM running for 2.203)
+2025-02-26 10:47:27.082  INFO 21328 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 10:47:27.082  INFO 21328 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 10:47:27.083  INFO 21328 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 10:47:38.300  WARN 21328 --- [http-nio-1234-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required request part 'file' is not present]
+2025-02-26 10:47:48.547  WARN 21328 --- [http-nio-1234-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required request part 'file' is not present]
+2025-02-26 10:49:31.851  WARN 21328 --- [http-nio-1234-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required request part 'file' is not present]
+2025-02-26 10:51:13.677  INFO 21328 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 10:51:13.961  INFO 21328 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 10:57:54.608  INFO 21328 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 10:57:54.613  INFO 21328 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 10:57:57.550  INFO 22832 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 22832 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 10:57:57.552  INFO 22832 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 10:57:58.185  INFO 22832 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 10:57:58.190  INFO 22832 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 10:57:58.190  INFO 22832 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 10:57:58.190  INFO 22832 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 10:57:58.245  INFO 22832 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 10:57:58.246  INFO 22832 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 671 ms
+2025-02-26 10:57:58.775  INFO 22832 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 10:57:58.906  INFO 22832 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 10:57:58.927  INFO 22832 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 10:57:58.928  INFO 22832 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 10:57:58.937  INFO 22832 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 10:57:58.949  INFO 22832 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 10:57:59.029  INFO 22832 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 10:57:59.031  INFO 22832 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 10:57:59.053  INFO 22832 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 10:57:59.060  INFO 22832 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 10:57:59.078  INFO 22832 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 10:57:59.083  INFO 22832 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 10:57:59.087  INFO 22832 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 10:57:59.096  INFO 22832 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.777 seconds (JVM running for 2.145)
+2025-02-26 10:58:34.197  INFO 22832 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 10:58:34.197  INFO 22832 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 10:58:34.198  INFO 22832 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 10:58:34.243  INFO 22832 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 10:58:34.450  INFO 22832 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 11:02:11.975  INFO 22832 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 11:02:11.982  INFO 22832 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 11:02:14.895  INFO 23964 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 23964 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 11:02:14.896  INFO 23964 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 11:02:15.540  INFO 23964 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 11:02:15.544  INFO 23964 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:02:15.544  INFO 23964 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 11:02:15.545  INFO 23964 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 11:02:15.601  INFO 23964 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 11:02:15.602  INFO 23964 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 681 ms
+2025-02-26 11:02:16.181  INFO 23964 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 11:02:16.329  INFO 23964 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:02:16.353  INFO 23964 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 11:02:16.353  INFO 23964 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 11:02:16.362  INFO 23964 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 11:02:16.375  INFO 23964 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 11:02:16.461  INFO 23964 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 11:02:16.464  INFO 23964 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 11:02:16.485  INFO 23964 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 11:02:16.491  INFO 23964 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 11:02:16.511  INFO 23964 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 11:02:16.518  INFO 23964 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 11:02:16.523  INFO 23964 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 11:02:16.533  INFO 23964 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.893 seconds (JVM running for 2.288)
+2025-02-26 11:02:24.516  INFO 23964 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 11:02:24.516  INFO 23964 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 11:02:24.517  INFO 23964 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 11:02:24.566  INFO 23964 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 11:02:24.773  INFO 23964 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 11:03:49.289  INFO 23964 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 11:03:49.294  INFO 23964 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 11:03:52.017  INFO 2488 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 2488 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 11:03:52.019  INFO 2488 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 11:03:52.658  INFO 2488 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 11:03:52.663  INFO 2488 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:03:52.663  INFO 2488 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 11:03:52.663  INFO 2488 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 11:03:52.713  INFO 2488 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 11:03:52.713  INFO 2488 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 670 ms
+2025-02-26 11:03:53.258  INFO 2488 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 11:03:53.385  INFO 2488 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:03:53.407  INFO 2488 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 11:03:53.407  INFO 2488 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 11:03:53.416  INFO 2488 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 11:03:53.428  INFO 2488 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 11:03:53.505  INFO 2488 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 11:03:53.508  INFO 2488 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 11:03:53.530  INFO 2488 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 11:03:53.537  INFO 2488 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 11:03:53.556  INFO 2488 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 11:03:53.562  INFO 2488 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 11:03:53.567  INFO 2488 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 11:03:53.578  INFO 2488 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.797 seconds (JVM running for 2.187)
+2025-02-26 11:04:32.477  INFO 2488 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 11:04:32.477  INFO 2488 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 11:04:32.478  INFO 2488 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-02-26 11:04:32.520  INFO 2488 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 11:04:32.741  INFO 2488 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 11:10:23.730  INFO 2488 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 11:10:23.737  INFO 2488 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 11:10:26.432  INFO 1848 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 1848 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 11:10:26.433  INFO 1848 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 11:10:27.079  INFO 1848 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 11:10:27.085  INFO 1848 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:10:27.085  INFO 1848 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 11:10:27.085  INFO 1848 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 11:10:27.134  INFO 1848 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 11:10:27.134  INFO 1848 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 677 ms
+2025-02-26 11:10:27.662  INFO 1848 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 11:10:27.786  INFO 1848 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:10:27.808  INFO 1848 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 11:10:27.808  INFO 1848 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 11:10:27.817  INFO 1848 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 11:10:27.829  INFO 1848 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 11:10:27.904  INFO 1848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 11:10:27.907  INFO 1848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 11:10:27.929  INFO 1848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 11:10:27.936  INFO 1848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 11:10:27.957  INFO 1848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 11:10:27.962  INFO 1848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 11:10:27.967  INFO 1848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 11:10:27.978  INFO 1848 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.771 seconds (JVM running for 2.136)
+2025-02-26 11:10:32.011  INFO 1848 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 11:10:32.011  INFO 1848 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 11:10:32.012  INFO 1848 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 11:10:32.056  INFO 1848 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 11:10:32.283  INFO 1848 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 11:13:30.066  INFO 1848 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 11:13:30.071  INFO 1848 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 11:13:32.824  INFO 22440 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 22440 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 11:13:32.825  INFO 22440 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 11:13:33.534  INFO 22440 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 11:13:33.539  INFO 22440 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:13:33.539  INFO 22440 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 11:13:33.539  INFO 22440 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 11:13:33.605  INFO 22440 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 11:13:33.605  INFO 22440 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 754 ms
+2025-02-26 11:13:34.180  INFO 22440 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 11:13:34.315  INFO 22440 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:13:34.339  INFO 22440 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 11:13:34.339  INFO 22440 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 11:13:34.350  INFO 22440 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 11:13:34.364  INFO 22440 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 11:13:34.440  INFO 22440 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 11:13:34.442  INFO 22440 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 11:13:34.463  INFO 22440 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 11:13:34.470  INFO 22440 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 11:13:34.489  INFO 22440 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 11:13:34.495  INFO 22440 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 11:13:34.500  INFO 22440 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 11:13:34.510  INFO 22440 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.918 seconds (JVM running for 2.333)
+2025-02-26 11:13:39.405  INFO 22440 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 11:13:39.405  INFO 22440 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 11:13:39.406  INFO 22440 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-02-26 11:13:39.449  INFO 22440 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 11:13:39.914  INFO 22440 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 11:26:20.252  INFO 22440 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 11:26:20.257  INFO 22440 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 11:26:22.971  INFO 23796 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 23796 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 11:26:22.973  INFO 23796 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 11:26:23.652  INFO 23796 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 11:26:23.657  INFO 23796 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:26:23.657  INFO 23796 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 11:26:23.657  INFO 23796 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 11:26:23.708  INFO 23796 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 11:26:23.708  INFO 23796 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 712 ms
+2025-02-26 11:26:24.294  INFO 23796 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 11:26:24.423  INFO 23796 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:26:24.446  INFO 23796 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 11:26:24.446  INFO 23796 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 11:26:24.456  INFO 23796 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 11:26:24.471  INFO 23796 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 11:26:24.546  INFO 23796 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 11:26:24.549  INFO 23796 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 11:26:24.571  INFO 23796 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 11:26:24.578  INFO 23796 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 11:26:24.599  INFO 23796 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 11:26:24.604  INFO 23796 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_1
+2025-02-26 11:26:24.607  INFO 23796 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 11:26:24.611  INFO 23796 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 11:26:24.621  INFO 23796 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.873 seconds (JVM running for 2.238)
+2025-02-26 11:26:40.769  INFO 23796 --- [http-nio-1234-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 11:26:40.769  INFO 23796 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 11:26:40.770  INFO 23796 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 11:26:40.812  INFO 23796 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 11:26:41.060  INFO 23796 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 11:28:47.832  INFO 23796 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 11:28:47.840  INFO 23796 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 11:28:50.583  INFO 11568 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 11568 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 11:28:50.584  INFO 11568 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 11:28:51.220  INFO 11568 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 11:28:51.225  INFO 11568 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:28:51.225  INFO 11568 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 11:28:51.225  INFO 11568 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 11:28:51.280  INFO 11568 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 11:28:51.280  INFO 11568 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 672 ms
+2025-02-26 11:28:51.822  INFO 11568 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 11:28:51.957  INFO 11568 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 11:28:51.982  INFO 11568 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 11:28:51.982  INFO 11568 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 11:28:51.992  INFO 11568 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 11:28:52.005  INFO 11568 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 11:28:52.078  INFO 11568 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 11:28:52.081  INFO 11568 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 11:28:52.102  INFO 11568 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 11:28:52.110  INFO 11568 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 11:28:52.130  INFO 11568 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 11:28:52.135  INFO 11568 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_1
+2025-02-26 11:28:52.138  INFO 11568 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 11:28:52.142  INFO 11568 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 11:28:52.152  INFO 11568 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.803 seconds (JVM running for 2.17)
+2025-02-26 11:29:14.380  INFO 11568 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 11:29:14.380  INFO 11568 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 11:29:14.381  INFO 11568 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 11:29:14.427  INFO 11568 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 11:29:14.675  INFO 11568 --- [http-nio-1234-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 14:25:43.800  INFO 11568 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 14:25:43.809  INFO 11568 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 14:27:05.097  INFO 17848 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 17848 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 14:27:05.098  INFO 17848 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 14:27:05.777  INFO 17848 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 14:27:05.784  INFO 17848 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 14:27:05.784  INFO 17848 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 14:27:05.784  INFO 17848 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 14:27:05.841  INFO 17848 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 14:27:05.842  INFO 17848 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 721 ms
+2025-02-26 14:27:06.410  INFO 17848 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 14:27:06.541  INFO 17848 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 14:27:06.565  INFO 17848 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 14:27:06.566  INFO 17848 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 14:27:06.576  INFO 17848 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 14:27:06.592  INFO 17848 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 14:27:06.671  INFO 17848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 14:27:06.676  INFO 17848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 14:27:06.697  INFO 17848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 14:27:06.705  INFO 17848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 14:27:06.722  INFO 17848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_1
+2025-02-26 14:27:06.725  INFO 17848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 14:27:06.730  INFO 17848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_2
+2025-02-26 14:27:06.733  INFO 17848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 14:27:06.738  INFO 17848 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 14:27:06.748  INFO 17848 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.906 seconds (JVM running for 2.295)
+2025-02-26 14:28:00.945  INFO 17848 --- [http-nio-1234-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 14:28:00.945  INFO 17848 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 14:28:00.946  INFO 17848 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 14:28:00.996  INFO 17848 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 14:28:01.320  INFO 17848 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 14:45:24.460  INFO 17848 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 14:45:24.468  INFO 17848 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 14:45:27.958  INFO 23128 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 23128 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 14:45:27.960  INFO 23128 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 14:45:28.606  INFO 23128 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 14:45:28.612  INFO 23128 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 14:45:28.612  INFO 23128 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 14:45:28.612  INFO 23128 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 14:45:28.669  INFO 23128 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 14:45:28.669  INFO 23128 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 681 ms
+2025-02-26 14:45:29.237  INFO 23128 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 14:45:29.384  INFO 23128 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 14:45:29.440  INFO 23128 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 14:45:29.441  INFO 23128 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 14:45:29.460  INFO 23128 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 14:45:29.488  INFO 23128 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 14:45:29.596  INFO 23128 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 14:45:29.602  INFO 23128 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 14:45:29.624  INFO 23128 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 14:45:29.632  INFO 23128 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 14:45:29.650  INFO 23128 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_1
+2025-02-26 14:45:29.655  INFO 23128 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 14:45:29.661  INFO 23128 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_2
+2025-02-26 14:45:29.664  INFO 23128 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 14:45:29.670  INFO 23128 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 14:45:29.682  INFO 23128 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.992 seconds (JVM running for 2.412)
+2025-02-26 14:45:41.284  INFO 23128 --- [http-nio-1234-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 14:45:41.284  INFO 23128 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 14:45:41.285  INFO 23128 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 14:45:41.326  INFO 23128 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 14:45:41.672  INFO 23128 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 14:52:16.703  INFO 23128 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 14:52:16.709  INFO 23128 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 14:52:19.446  INFO 3920 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 3920 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 14:52:19.448  INFO 3920 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 14:52:20.080  INFO 3920 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 14:52:20.084  INFO 3920 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 14:52:20.084  INFO 3920 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 14:52:20.085  INFO 3920 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 14:52:20.133  INFO 3920 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 14:52:20.133  INFO 3920 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 660 ms
+2025-02-26 14:52:20.683  INFO 3920 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 14:52:20.818  INFO 3920 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 14:52:20.840  INFO 3920 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 14:52:20.840  INFO 3920 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 14:52:20.850  INFO 3920 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 14:52:20.866  INFO 3920 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 14:52:20.952  INFO 3920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 14:52:20.954  INFO 3920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_1
+2025-02-26 14:52:20.957  INFO 3920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 14:52:20.980  INFO 3920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 14:52:20.987  INFO 3920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 14:52:21.005  INFO 3920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_2
+2025-02-26 14:52:21.010  INFO 3920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 14:52:21.017  INFO 3920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_3
+2025-02-26 14:52:21.021  INFO 3920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 14:52:21.027  INFO 3920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 14:52:21.039  INFO 3920 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.832 seconds (JVM running for 2.199)
+2025-02-26 14:52:52.494  INFO 26024 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 26024 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 14:52:52.496  INFO 26024 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 14:52:53.162  INFO 26024 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 14:52:53.167  INFO 26024 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 14:52:53.167  INFO 26024 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 14:52:53.167  INFO 26024 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 14:52:53.226  INFO 26024 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 14:52:53.226  INFO 26024 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 706 ms
+2025-02-26 14:52:53.767  INFO 26024 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 14:52:53.892  INFO 26024 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 14:52:53.915  INFO 26024 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 14:52:53.916  INFO 26024 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 14:52:53.925  INFO 26024 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 14:52:53.939  INFO 26024 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 14:52:54.017  INFO 26024 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 14:52:54.019  INFO 26024 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_1
+2025-02-26 14:52:54.021  INFO 26024 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 14:52:54.041  INFO 26024 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 14:52:54.047  INFO 26024 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 14:52:54.063  INFO 26024 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_2
+2025-02-26 14:52:54.067  INFO 26024 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 14:52:54.071  INFO 26024 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_3
+2025-02-26 14:52:54.074  INFO 26024 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 14:52:54.078  INFO 26024 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 14:52:54.088  INFO 26024 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.835 seconds (JVM running for 2.241)
+2025-02-26 14:53:59.054  INFO 9868 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 9868 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 14:53:59.055  INFO 9868 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 14:53:59.721  INFO 9868 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 14:53:59.727  INFO 9868 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 14:53:59.728  INFO 9868 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 14:53:59.728  INFO 9868 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 14:53:59.792  INFO 9868 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 14:53:59.792  INFO 9868 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 714 ms
+2025-02-26 14:54:00.352  INFO 9868 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 14:54:00.495  INFO 9868 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 14:54:00.519  INFO 9868 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 14:54:00.519  INFO 9868 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 14:54:00.529  INFO 9868 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 14:54:00.542  INFO 9868 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 14:54:00.633  INFO 9868 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 14:54:00.635  INFO 9868 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_1
+2025-02-26 14:54:00.638  INFO 9868 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 14:54:00.661  INFO 9868 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 14:54:00.671  INFO 9868 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 14:54:00.688  INFO 9868 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_2
+2025-02-26 14:54:00.691  INFO 9868 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 14:54:00.696  INFO 9868 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_3
+2025-02-26 14:54:00.699  INFO 9868 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 14:54:00.703  INFO 9868 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 14:54:00.713  INFO 9868 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.887 seconds (JVM running for 2.272)
+2025-02-26 14:54:19.852  INFO 9868 --- [http-nio-1234-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 14:54:19.852  INFO 9868 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 14:54:19.853  INFO 9868 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-02-26 14:54:19.894  INFO 9868 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 14:54:20.119  INFO 9868 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 15:00:02.706  INFO 9868 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 15:00:02.712  INFO 9868 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 15:00:05.417  INFO 12764 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 12764 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 15:00:05.419  INFO 12764 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 15:00:06.034  INFO 12764 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 15:00:06.039  INFO 12764 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 15:00:06.039  INFO 12764 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 15:00:06.039  INFO 12764 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 15:00:06.089  INFO 12764 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 15:00:06.089  INFO 12764 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 647 ms
+2025-02-26 15:00:06.608  INFO 12764 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 15:00:06.734  INFO 12764 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 15:00:06.755  INFO 12764 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 15:00:06.756  INFO 12764 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 15:00:06.765  INFO 12764 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 15:00:06.778  INFO 12764 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 15:00:06.857  INFO 12764 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 15:00:06.859  INFO 12764 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_1
+2025-02-26 15:00:06.863  INFO 12764 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 15:00:06.887  INFO 12764 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 15:00:06.893  INFO 12764 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 15:00:06.908  INFO 12764 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_2
+2025-02-26 15:00:06.912  INFO 12764 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 15:00:06.916  INFO 12764 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_3
+2025-02-26 15:00:06.919  INFO 12764 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 15:00:06.923  INFO 12764 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 15:00:06.932  INFO 12764 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.732 seconds (JVM running for 2.104)
+2025-02-26 15:00:22.010  INFO 12764 --- [http-nio-1234-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 15:00:22.010  INFO 12764 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 15:00:22.011  INFO 12764 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 15:00:22.055  INFO 12764 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 15:00:22.322  INFO 12764 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 15:00:45.022  INFO 12764 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 15:00:45.027  INFO 12764 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 15:00:47.811  INFO 24768 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 24768 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 15:00:47.813  INFO 24768 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 15:00:48.497  INFO 24768 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 15:00:48.502  INFO 24768 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 15:00:48.503  INFO 24768 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 15:00:48.503  INFO 24768 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 15:00:48.560  INFO 24768 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 15:00:48.560  INFO 24768 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 721 ms
+2025-02-26 15:00:49.099  INFO 24768 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 15:00:49.245  INFO 24768 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 15:00:49.269  INFO 24768 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 15:00:49.269  INFO 24768 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 15:00:49.279  INFO 24768 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 15:00:49.292  INFO 24768 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 15:00:49.377  INFO 24768 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 15:00:49.379  INFO 24768 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_1
+2025-02-26 15:00:49.381  INFO 24768 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 15:00:49.402  INFO 24768 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 15:00:49.408  INFO 24768 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 15:00:49.424  INFO 24768 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_2
+2025-02-26 15:00:49.427  INFO 24768 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 15:00:49.432  INFO 24768 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_3
+2025-02-26 15:00:49.435  INFO 24768 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 15:00:49.439  INFO 24768 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 15:00:49.448  INFO 24768 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.879 seconds (JVM running for 2.27)
+2025-02-26 15:00:55.041  INFO 24768 --- [http-nio-1234-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 15:00:55.042  INFO 24768 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 15:00:55.042  INFO 24768 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-02-26 15:00:55.088  INFO 24768 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 15:00:55.312  INFO 24768 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 15:02:24.511  INFO 24768 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 15:02:24.516  INFO 24768 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 15:02:27.312  INFO 22920 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 22920 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 15:02:27.313  INFO 22920 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 15:02:27.966  INFO 22920 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 15:02:27.970  INFO 22920 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 15:02:27.971  INFO 22920 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 15:02:27.971  INFO 22920 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 15:02:28.021  INFO 22920 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 15:02:28.021  INFO 22920 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 685 ms
+2025-02-26 15:02:28.577  INFO 22920 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 15:02:28.712  INFO 22920 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 15:02:28.733  INFO 22920 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 15:02:28.734  INFO 22920 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 15:02:28.743  INFO 22920 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 15:02:28.758  INFO 22920 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 15:02:28.843  INFO 22920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 15:02:28.845  INFO 22920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_1
+2025-02-26 15:02:28.849  INFO 22920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 15:02:28.870  INFO 22920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 15:02:28.878  INFO 22920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 15:02:28.896  INFO 22920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_2
+2025-02-26 15:02:28.899  INFO 22920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 15:02:28.904  INFO 22920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_3
+2025-02-26 15:02:28.907  INFO 22920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 15:02:28.911  INFO 22920 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 15:02:28.922  INFO 22920 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.854 seconds (JVM running for 2.248)
+2025-02-26 15:02:34.259  INFO 22920 --- [http-nio-1234-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 15:02:34.259  INFO 22920 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 15:02:34.260  INFO 22920 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 15:02:34.307  INFO 22920 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 15:02:34.600  INFO 22920 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26 15:20:32.033  INFO 22920 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26 15:20:32.057  INFO 22920 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26 15:20:34.901  INFO 14988 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 14988 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 15:20:34.902  INFO 14988 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 15:20:35.614  INFO 14988 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 15:20:35.621  INFO 14988 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 15:20:35.621  INFO 14988 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 15:20:35.621  INFO 14988 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 15:20:35.679  INFO 14988 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 15:20:35.679  INFO 14988 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 751 ms
+2025-02-26 15:20:35.894  WARN 14988 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dfUpBgBaigeMekController': Unsatisfied dependency expressed through field 'dfUpBgBaigeTestImgService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dfUpBgBaigeTestImgServiceImpl': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'ipconfig' in value "${ipconfig}"
+2025-02-26 15:20:35.895  INFO 14988 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-02-26 15:20:35.901  INFO 14988 --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-02-26 15:20:35.912 ERROR 14988 --- [           main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dfUpBgBaigeMekController': Unsatisfied dependency expressed through field 'dfUpBgBaigeTestImgService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dfUpBgBaigeTestImgServiceImpl': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'ipconfig' in value "${ipconfig}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:659)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.biel.qmsgather.QmsgatherBgApplication.main(QmsgatherBgApplication.java:10)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dfUpBgBaigeTestImgServiceImpl': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'ipconfig' in value "${ipconfig}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	... 20 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ipconfig' in value "${ipconfig}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:175)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	... 31 common frames omitted
+
+2025-02-26 15:23:06.063  INFO 23852 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Starting QmsgatherBgApplication using Java 17 on lyy with PID 23852 (D:\workcode\qqg\QmsgatherBG\Qmsgather_BG\target\classes started by 96901 in D:\workcode\qqg\QmsgatherBG)
+2025-02-26 15:23:06.065  INFO 23852 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : No active profile set, falling back to default profiles: default
+2025-02-26 15:23:06.718  INFO 23852 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1234 (http)
+2025-02-26 15:23:06.723  INFO 23852 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1234"]
+2025-02-26 15:23:06.723  INFO 23852 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26 15:23:06.723  INFO 23852 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2025-02-26 15:23:06.771  INFO 23852 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26 15:23:06.771  INFO 23852 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 680 ms
+2025-02-26 15:23:07.301  INFO 23852 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2025-02-26 15:23:07.430  INFO 23852 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1234"]
+2025-02-26 15:23:07.451  INFO 23852 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1234 (http) with context path ''
+2025-02-26 15:23:07.452  INFO 23852 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2025-02-26 15:23:07.462  INFO 23852 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2025-02-26 15:23:07.474  INFO 23852 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2025-02-26 15:23:07.556  INFO 23852 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgBaigeTestUsingPOST_1
+2025-02-26 15:23:07.558  INFO 23852 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_1
+2025-02-26 15:23:07.561  INFO 23852 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_1
+2025-02-26 15:23:07.580  INFO 23852 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_1
+2025-02-26 15:23:07.586  INFO 23852 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadDfUpBgInkDensityUsingPOST_2
+2025-02-26 15:23:07.600  INFO 23852 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_2
+2025-02-26 15:23:07.604  INFO 23852 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgSandBlastUsingPOST_1
+2025-02-26 15:23:07.608  INFO 23852 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadExcelWithJsonUsingPOST_3
+2025-02-26 15:23:07.611  INFO 23852 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findDfUpBgZhongkaoBackUsingPOST_1
+2025-02-26 15:23:07.615  INFO 23852 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: uploadMultipleFilesUsingPOST_2
+2025-02-26 15:23:07.625  INFO 23852 --- [           main] c.biel.qmsgather.QmsgatherBgApplication  : Started QmsgatherBgApplication in 1.81 seconds (JVM running for 2.22)
+2025-02-26 15:23:20.151  INFO 23852 --- [http-nio-1234-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26 15:23:20.151  INFO 23852 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26 15:23:20.152  INFO 23852 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26 15:23:20.191  INFO 23852 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26 15:23:20.440  INFO 23852 --- [http-nio-1234-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
