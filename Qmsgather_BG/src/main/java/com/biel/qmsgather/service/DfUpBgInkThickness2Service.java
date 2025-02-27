@@ -9,5 +9,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2025-02-27 16:28:07
 */
 public interface DfUpBgInkThickness2Service extends IService<DfUpBgInkThickness2> {
-
+    String getMaxBatchId();
 }

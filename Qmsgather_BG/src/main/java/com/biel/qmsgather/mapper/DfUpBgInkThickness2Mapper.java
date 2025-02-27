@@ -3,6 +3,7 @@ package com.biel.qmsgather.mapper;
 import com.biel.qmsgather.domain.DfUpBgInkThickness2;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
 * @author dafenqi
@@ -12,6 +13,9 @@ import org.apache.ibatis.annotations.Mapper;
 */
 @Mapper
 public interface DfUpBgInkThickness2Mapper extends BaseMapper<DfUpBgInkThickness2> {
+
+    @Select("SELECT batch_id FROM df_up_bg_ink_thickness WHERE DATE(test_date) = CURDATE() ORDER BY batch_id DESC LIMIT 1")
+    public String getMaxBatchId();
 
 }
 
