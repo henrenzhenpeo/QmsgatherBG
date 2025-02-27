@@ -49,26 +49,46 @@ public class DfUpBgInkDensityController {
     }
 
 
-    @PostMapping("/findDfUpBgInkDensity")
+    @GetMapping("/findDfUpBgInkDensity")
     @ApiOperation(value = "OD密度查询接口")
-    public R findDfUpBgInkDensity(@RequestBody DfUpBgInkDensityDto dfUpBgInkDensityDto) {
-        QueryWrapper<DfUpBgInkDensity> dfUpBgInkDensityQueryWrapper = new QueryWrapper<>();
-        if (StringUtils.isNotEmpty(dfUpBgInkDensityDto.getFactory())) {
-            dfUpBgInkDensityQueryWrapper.eq("factory", dfUpBgInkDensityDto.getFactory());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgInkDensityDto.getStage())) {
-            dfUpBgInkDensityQueryWrapper.eq("stage", dfUpBgInkDensityDto.getStage());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgInkDensityDto.getProject())) {
-            dfUpBgInkDensityQueryWrapper.eq("project", dfUpBgInkDensityDto.getProject());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgInkDensityDto.getColor())) {
-            dfUpBgInkDensityQueryWrapper.eq("color", dfUpBgInkDensityDto.getColor());
-        }
-        dfUpBgInkDensityQueryWrapper.between("test_date",dfUpBgInkDensityDto.getStartTestDate(),dfUpBgInkDensityDto.getEndTestDate());
+    public R findDfUpBgInkDensity(
+            @RequestParam(value = "factory", required = false) String factory,
+            @RequestParam(value = "stage", required = false) String stage,
+            @RequestParam(value = "project", required = false) String project,
+            @RequestParam(value = "color", required = false) String color,
+            @RequestParam(value = "startTestDate", required = false) String startTestDate,
+            @RequestParam(value = "endTestDate", required = false) String endTestDate,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "limit", defaultValue = "10") int limit) {
 
-        IPage<DfUpBgInkDensity> page = dfUpBgInkDensityService.page(new Page<>(dfUpBgInkDensityDto.getPageIndex(), dfUpBgInkDensityDto.getPageSize()), dfUpBgInkDensityQueryWrapper);
-        return R.ok(page);
+        // 创建查询条件
+        QueryWrapper<DfUpBgInkDensity> dfUpBgInkDensityQueryWrapper = new QueryWrapper<>();
+
+        // 构建查询条件
+        if (StringUtils.isNotEmpty(factory)) {
+            dfUpBgInkDensityQueryWrapper.eq("factory", factory);
+        }
+        if (StringUtils.isNotEmpty(stage)) {
+            dfUpBgInkDensityQueryWrapper.eq("stage", stage);
+        }
+        if (StringUtils.isNotEmpty(project)) {
+            dfUpBgInkDensityQueryWrapper.eq("project", project);
+        }
+        if (StringUtils.isNotEmpty(color)) {
+            dfUpBgInkDensityQueryWrapper.eq("color", color);
+        }
+        if (StringUtils.isNotEmpty(startTestDate) && StringUtils.isNotEmpty(endTestDate)) {
+            dfUpBgInkDensityQueryWrapper.between("test_date", startTestDate, endTestDate);
+        }
+
+        // 执行分页查询
+        IPage<DfUpBgInkDensity> pageResult = dfUpBgInkDensityService.page(
+                new Page<>(page, limit),
+                dfUpBgInkDensityQueryWrapper
+        );
+
+        return R.ok(pageResult);
     }
+
 
 }

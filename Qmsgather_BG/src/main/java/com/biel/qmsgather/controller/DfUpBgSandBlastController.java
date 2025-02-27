@@ -50,30 +50,51 @@ public class DfUpBgSandBlastController {
     }
 
 
-    @PostMapping("/findDfUpBgSandBlast")
+    @GetMapping("/findDfUpBgSandBlast")
     @ApiOperation(value = "bg喷砂查询接口")
-    public R findDfUpBgSandBlast(@RequestBody DfUpBgSandBlastDto dfUpBgSandBlastDto) {
-        QueryWrapper<DfUpBgSandBlast> dfUpBgSandBlastQueryWrapper = new QueryWrapper<>();
-        if (StringUtils.isNotEmpty(dfUpBgSandBlastDto.getProcess())) {
-            dfUpBgSandBlastQueryWrapper.eq("process", dfUpBgSandBlastDto.getProcess());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgSandBlastDto.getFactory())) {
-            dfUpBgSandBlastQueryWrapper.eq("factory", dfUpBgSandBlastDto.getFactory());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgSandBlastDto.getStage())) {
-            dfUpBgSandBlastQueryWrapper.eq("stage", dfUpBgSandBlastDto.getStage());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgSandBlastDto.getProject())) {
-            dfUpBgSandBlastQueryWrapper.eq("project", dfUpBgSandBlastDto.getProject());
-        }
-        if (StringUtils.isNotEmpty(dfUpBgSandBlastDto.getColor())) {
-            dfUpBgSandBlastQueryWrapper.eq("color", dfUpBgSandBlastDto.getColor());
-        }
-        dfUpBgSandBlastQueryWrapper.between("test_date",dfUpBgSandBlastDto.getStartTestDate(),dfUpBgSandBlastDto.getEndTestDate());
+    public R findDfUpBgSandBlast(
+            @RequestParam(value = "process", required = false) String process,
+            @RequestParam(value = "factory", required = false) String factory,
+            @RequestParam(value = "stage", required = false) String stage,
+            @RequestParam(value = "project", required = false) String project,
+            @RequestParam(value = "color", required = false) String color,
+            @RequestParam(value = "startTestDate", required = false) String startTestDate,
+            @RequestParam(value = "endTestDate", required = false) String endTestDate,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "limit", defaultValue = "10") int limit) {
 
-        IPage<DfUpBgSandBlast> page = dfUpBgInkLandHeightList.page(new Page<>(dfUpBgSandBlastDto.getPageIndex(), dfUpBgSandBlastDto.getPageSize()), dfUpBgSandBlastQueryWrapper);
-        return R.ok(page);
+        // 创建查询条件
+        QueryWrapper<DfUpBgSandBlast> dfUpBgSandBlastQueryWrapper = new QueryWrapper<>();
+
+        // 构建查询条件
+        if (StringUtils.isNotEmpty(process)) {
+            dfUpBgSandBlastQueryWrapper.eq("process", process);
+        }
+        if (StringUtils.isNotEmpty(factory)) {
+            dfUpBgSandBlastQueryWrapper.eq("factory", factory);
+        }
+        if (StringUtils.isNotEmpty(stage)) {
+            dfUpBgSandBlastQueryWrapper.eq("stage", stage);
+        }
+        if (StringUtils.isNotEmpty(project)) {
+            dfUpBgSandBlastQueryWrapper.eq("project", project);
+        }
+        if (StringUtils.isNotEmpty(color)) {
+            dfUpBgSandBlastQueryWrapper.eq("color", color);
+        }
+        if (StringUtils.isNotEmpty(startTestDate) && StringUtils.isNotEmpty(endTestDate)) {
+            dfUpBgSandBlastQueryWrapper.between("test_date", startTestDate, endTestDate);
+        }
+
+        // 执行分页查询
+        IPage<DfUpBgSandBlast> pageResult = dfUpBgInkLandHeightList.page(
+                new Page<>(page, limit),
+                dfUpBgSandBlastQueryWrapper
+        );
+
+        return R.ok(pageResult);
     }
+
 
 
 }

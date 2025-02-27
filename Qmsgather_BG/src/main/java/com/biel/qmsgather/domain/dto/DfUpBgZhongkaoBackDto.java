@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class DfUpBgZhongkaoBackDto {
 
-    private Integer pageIndex;
-    private Integer pageSize;
+    private Integer page;
+    private Integer limit;
 
     /**
      * 工序名称

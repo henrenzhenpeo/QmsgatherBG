@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 public class DfUpBgInkLandHeightDto {
 
-    private Integer pageIndex;
-    private Integer pageSize;
+    private Integer page;
+    private Integer limit;
 
     /**
      * 工厂
@@ -28,6 +28,11 @@ public class DfUpBgInkLandHeightDto {
      * 阶段
      */
     private String stage;
+
+    /**
+     * 状态
+     */
+    private String state;
 
     /**
      * 日期（yyyy-mm-dd）
