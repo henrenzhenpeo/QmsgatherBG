@@ -111,6 +111,11 @@ public class DfUpBgDripController {
     @ApiOperation(value = "bg 水滴接口上传Excel和JSON数据")
     public Result uploadExcelWithJson(@RequestParam("file") MultipartFile file,
                                       @RequestParam("jsonData") String jsonData) {
+
+
+
+
+
         try {
             // 解析JSON数据
             DfUpBgExcelDto baseInfo = new ObjectMapper().readValue(jsonData, DfUpBgExcelDto.class);
@@ -118,14 +123,16 @@ public class DfUpBgDripController {
             // 调用服务处理Excel和JSON数据
             boolean result = dfUpBgDripService.saveExcelWithJson(file, baseInfo);
 
+
+
             if (result) {
-                return new Result(200, "bg 液抛Excel和JSON数据上传成功");
+                return new Result(200, "bg 水滴角接口上传成功");
             } else {
-                return new Result(500, "bg 液抛Excel和JSON数据上传失败");
+                return new Result(500, "bg 水滴角接口上传失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return new Result(500, "bg 液抛Excel和JSON数据上传失败: " + e.getMessage());
+            return new Result(500, "bg 水滴角接口上传失败: " + e.getMessage());
         }
     }
 

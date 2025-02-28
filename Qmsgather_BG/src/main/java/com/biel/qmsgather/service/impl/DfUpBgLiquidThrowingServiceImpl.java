@@ -98,9 +98,9 @@ public class DfUpBgLiquidThrowingServiceImpl extends ServiceImpl<DfUpBgLiquidThr
     @Override
     public boolean saveExcelWithJson(MultipartFile file, DfUpBgExcelDto baseInfo) {
         try {
-            // 获取新的批次ID
-            String newBatchId = getMaxBatchId();
 
+  // 获取新的批次ID
+             String newBatchId = getMaxBatchId();
             // 解析Excel文件
             List<DfUpBgLiquidThrowing> dataList = parseExcelFile(file, baseInfo, newBatchId);
 
@@ -168,7 +168,7 @@ public class DfUpBgLiquidThrowingServiceImpl extends ServiceImpl<DfUpBgLiquidThr
             entity.setTestDate(baseInfo.getTestDate());
 
             // 设置批次ID
-            entity.setBatchId(baseInfo.getTestDate() + "-" + batchId);
+             entity.setBatchId(batchId);
 
             // 从Excel行中读取数据
             // 注意：这里的列索引需要根据实际Excel文件的结构进行调整

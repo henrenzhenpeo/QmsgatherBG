@@ -102,7 +102,7 @@ public class DfUpBgSandBlastController {
 
 
     @PostMapping("/uploadExcelWithJson")
-    @ApiOperation(value = "bg 液抛接口上传Excel和JSON数据")
+    @ApiOperation(value = "bg 喷砂接口上传Excel和JSON数据")
     public Result uploadExcelWithJson(@RequestParam("file") MultipartFile file,
                                       @RequestParam("jsonData") String jsonData) {
         try {
@@ -113,9 +113,9 @@ public class DfUpBgSandBlastController {
             boolean result = dfUpBgInkLandHeightList.saveExcelWithJson(file, baseInfo);
 
             if (result) {
-                return new Result(200, "bg 液抛Excel和JSON数据上传成功");
+                return new Result(200, "bg 喷砂Excel和JSON数据上传成功");
             } else {
-                return new Result(500, "bg 液抛Excel和JSON数据上传失败");
+                return new Result(500, "bg 喷砂Excel和JSON数据上传失败");
             }
         } catch (Exception e) {
             e.printStackTrace();

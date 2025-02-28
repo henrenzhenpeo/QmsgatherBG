@@ -8,6 +8,7 @@ import com.biel.qmsgather.service.DfUpBgBaigeMekService;
 import com.biel.qmsgather.mapper.DfUpBgBaigeMekMapper;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -116,6 +117,11 @@ public class DfUpBgBaigeMekServiceImpl extends ServiceImpl<DfUpBgBaigeMekMapper,
     private List<DfUpBgBaigeMek> parseExcelFile(MultipartFile file, DfUpBgExcelDto baseInfo, String batchId) throws IOException {
         List<DfUpBgBaigeMek> resultList = new ArrayList<>();
 
+
+        DataFormatter formatter = new DataFormatter();
+
+
+
         // 创建工作簿
         Workbook workbook;
         if (file.getOriginalFilename().endsWith(".xlsx")) {
@@ -129,6 +135,9 @@ public class DfUpBgBaigeMekServiceImpl extends ServiceImpl<DfUpBgBaigeMekMapper,
         // 获取第一个工作表
         Sheet sheet = workbook.getSheetAt(2);
 
+
+        FormulaEvaluator evaluator = sheet.getWorkbook().getCreationHelper().createFormulaEvaluator();
+
         // 从第二行开始读取数据（假设第一行是表头）
         for (int i = 4; i <= sheet.getLastRowNum(); i++) {
             Row row = sheet.getRow(i);
@@ -140,12 +149,15 @@ public class DfUpBgBaigeMekServiceImpl extends ServiceImpl<DfUpBgBaigeMekMapper,
             entity.setProcess(baseInfo.getProcess());
             entity.setFactory(baseInfo.getFactory());
             entity.setProject(baseInfo.getProject());
+
             entity.setColor(baseInfo.getColor());
+            entity.setState(baseInfo.getStage());
             entity.setStage(baseInfo.getStage());
             entity.setTestDate(baseInfo.getTestDate());
 
+            entity.setUploadName(baseInfo.getUploader());
             // 设置批次ID
-            entity.setBatchId(baseInfo.getTestDate() + "-" + batchId);
+            entity.setBatchId( batchId);
 
 
 
@@ -157,11 +169,11 @@ public class DfUpBgBaigeMekServiceImpl extends ServiceImpl<DfUpBgBaigeMekMapper,
              entity.setNo(getCellValueAsString(row.getCell(1)));
              entity.setTestTime(getCellValueAsString(row.getCell(2)));
              // entity.setStage(getCellValueAsString(row.getCell(3)));
-             entity.setMeasurementResult(getCellValueAsString(row.getCell(4)));
+            entity.setMeasurementResult(getMergedCellValue(sheet, i, 3, row.getCell(3), evaluator, formatter));
 
 
-             entity.setState(getCellValueAsString(row.getCell(5)));
-             entity.setUploadName(getCellValueAsString(row.getCell(6)));
+             // entity.setState(getCellValueAsString(row.getCell(5)));
+
 
 
 
@@ -190,6 +202,48 @@ public class DfUpBgBaigeMekServiceImpl extends ServiceImpl<DfUpBgBaigeMekMapper,
         }
         return true;
     }
+
+
+
+
+
+
+
+
+
+
+    private String getMergedCellValue(Sheet sheet, int row, int col, Cell cell, FormulaEvaluator evaluator, DataFormatter formatter) {
+        for (int i = 0; i < sheet.getNumMergedRegions(); i++) {
+            CellRangeAddress region = sheet.getMergedRegion(i);
+            if (region.isInRange(row, col)) {
+                // 获取合并区域的第一个单元格的值
+                Cell firstCell = sheet.getRow(region.getFirstRow()).getCell(region.getFirstColumn());
+                return getCellValue(firstCell, evaluator, formatter);
+            }
+        }
+        return getCellValue(cell, evaluator, formatter);
+    }
+
+    private String getCellValue(Cell cell, FormulaEvaluator evaluator, DataFormatter formatter) {
+        if (cell == null) {
+            return "";
+        }
+        return formatter.formatCellValue(cell, evaluator);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 获取单元格的字符串值

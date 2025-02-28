@@ -2,6 +2,8 @@ package com.biel.qmsgather.service;
 
 import com.biel.qmsgather.domain.DfUpBgInkLandHeight;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
 * @author dafenqi
@@ -10,4 +12,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface DfUpBgInkLandHeightService extends IService<DfUpBgInkLandHeight> {
     String getMaxBatchId();
+
+
+
+    boolean saveExcelWithJson(MultipartFile file, DfUpBgExcelDto baseInfo);
 }

@@ -75,6 +75,10 @@ public class DfUpBgInkLandHeight implements Serializable {
      */
     private String batchId;
 
+
+    private String excelStage;
+
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

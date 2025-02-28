@@ -2,6 +2,8 @@ package com.biel.qmsgather.service;
 
 import com.biel.qmsgather.domain.DfUpBgInkThickness2;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
 * @author dafenqi
@@ -10,4 +12,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface DfUpBgInkThickness2Service extends IService<DfUpBgInkThickness2> {
     String getMaxBatchId();
+
+
+    boolean saveExcelWithJson(MultipartFile file, DfUpBgExcelDto baseInfo);
+
+
 }

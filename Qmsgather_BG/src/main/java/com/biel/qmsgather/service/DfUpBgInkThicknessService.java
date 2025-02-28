@@ -12,5 +12,6 @@ import com.biel.qmsgather.domain.dto.DfUpBgInkThicknessDto;
 */
 public interface DfUpBgInkThicknessService extends IService<DfUpBgInkThickness> {
 
+
     String getMaxBatchId();
 }

@@ -144,7 +144,7 @@ public class DfUpBgSandBlastServiceImpl extends ServiceImpl<DfUpBgSandBlastMappe
             entity.setTestDate(baseInfo.getTestDate());
 
             // 设置批次ID
-            entity.setBatchId(baseInfo.getTestDate() + "-" + batchId);
+            entity.setBatchId(batchId);
 
             // 从Excel行中读取数据
             // 注意：这里的列索引需要根据实际Excel文件的结构进行调整

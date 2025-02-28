@@ -8,8 +8,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfUpBgInkThickness;
 import com.biel.qmsgather.domain.DfUpBgInkThickness2;
 import com.biel.qmsgather.domain.DfUpBgInkThicknessChild;
+import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
+
+import com.biel.qmsgather.service.DfUpBgInkLandHeightService;
 import com.biel.qmsgather.service.DfUpBgInkThickness2Service;
 import com.biel.qmsgather.util.Result;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -32,6 +37,15 @@ public class DfUpBgInkThickness2Controller {
 
     @Autowired
     private DfUpBgInkThickness2Service dfUpBgInkThickness2Service;
+
+    @Autowired
+    private DfUpBgInkLandHeightService dfUpBgInkLandHeightService;
+
+    // @Autowired
+    // private DfUpBgInkDensityService dfUpBgInkDensityService;
+
+
+
 
     @PostMapping("/upload")
     @ApiOperation(value = "油墨厚度上传接口")
@@ -92,4 +106,49 @@ public class DfUpBgInkThickness2Controller {
 
         return R.ok(pageResult);
     }
+
+
+
+
+
+
+    @PostMapping("/uploadExcelWithJson")
+    @ApiOperation(value = "bg 水滴接口上传Excel和JSON数据")
+    public Result uploadExcelWithJson(@RequestParam("file") MultipartFile file,
+                                      @RequestParam("jsonData") String jsonData) {
+        try {
+            // 解析JSON数据
+            DfUpBgExcelDto baseInfo = new ObjectMapper().readValue(jsonData, DfUpBgExcelDto.class);
+
+            // 调用服务处理Excel和JSON数据
+             boolean result = dfUpBgInkThickness2Service.saveExcelWithJson(file, baseInfo);
+             boolean result1 = dfUpBgInkLandHeightService.saveExcelWithJson(file, baseInfo);
+
+            // boolean result2 = dfUpBgInkDensityService.saveExcelWithJson(file, baseInfo);
+
+            if (result1 || result) {
+                return new Result(200, "bg 油墨厚度接口上传成功");
+            } else {
+                return new Result(500, "bg 油墨厚度接口上传上传失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(500, "bg 液抛Excel和JSON数据上传失败: " + e.getMessage());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

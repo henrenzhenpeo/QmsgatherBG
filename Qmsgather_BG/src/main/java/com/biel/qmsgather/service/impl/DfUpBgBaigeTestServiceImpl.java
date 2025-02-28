@@ -87,7 +87,7 @@ public class DfUpBgBaigeTestServiceImpl extends ServiceImpl<DfUpBgBaigeTestMappe
             // 只处理百格测试和煮水百格测试两个sheet
             if (sheetName.contains("百格测试") || sheetName.contains("煮水百格测试")) {
                 // 从第4行开始读取数据（根据Excel格式）
-                for (int i = 4; i <= sheet.getLastRowNum(); i++) {
+                for (int i = 3; i <= sheet.getLastRowNum(); i++) {
                     Row row = sheet.getRow(i);
                     if (row == null || isEmptyRow(row)) continue;
 
@@ -106,17 +106,20 @@ public class DfUpBgBaigeTestServiceImpl extends ServiceImpl<DfUpBgBaigeTestMappe
                     entity.setColor(baseInfo.getColor());
                     entity.setStage(baseInfo.getStage());
                     entity.setTestDate(baseInfo.getTestDate());
+                    entity.setUploadName(baseInfo.getUploader());
                     entity.setState("OK"); // 根据Excel中的结论设置
 
                     // 设置批次ID
-                    entity.setBatchId(baseInfo.getTestDate() + "-" + batchId);
+                    entity.setBatchId(batchId);
 
-                    // 设置上传人
-                    // entity.setUploadName(baseInfo.getUploadName());
 
                     // 从Excel行中读取数据
                     entity.setTwoCode(getCellValueAsString(row.getCell(1)));  // 2D码
+
+
                     entity.setTestTime(getCellValueAsString(row.getCell(2)));  // 时间
+
+
                     entity.setArea1(getCellValueAsString(row.getCell(3)));  // Area 1
                     entity.setArea2(getCellValueAsString(row.getCell(4)));  // Area 2
                     entity.setArea3(getCellValueAsString(row.getCell(5)));  // Area 3

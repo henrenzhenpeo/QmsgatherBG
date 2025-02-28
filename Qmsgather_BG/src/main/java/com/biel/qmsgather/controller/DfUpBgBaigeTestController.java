@@ -4,6 +4,7 @@ import com.biel.qmsgather.domain.DfUpBgBaigeTest;
 import com.biel.qmsgather.domain.DfUpBgBaigeTestImg;
 import com.biel.qmsgather.domain.DfUpBgDrip;
 import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
+import com.biel.qmsgather.service.DfUpBgBaigeMekService;
 import com.biel.qmsgather.service.DfUpBgBaigeTestImgService;
 import com.biel.qmsgather.service.DfUpBgBaigeTestService;
 import com.biel.qmsgather.util.Result;
@@ -35,6 +36,10 @@ public class DfUpBgBaigeTestController {
 
     @Autowired
     private DfUpBgBaigeTestService dfUpBgBaigeTestService;
+
+
+    @Autowired
+    private DfUpBgBaigeMekService dfUpBgBaigeMekService;
 
     @Autowired
     private DfUpBgBaigeTestImgService dfUpBgBaigeTestImgService;
@@ -153,14 +158,16 @@ public class DfUpBgBaigeTestController {
             int result = dfUpBgBaigeTestService.parseExcelFile(file, baseInfo, batchId);
           Map<String, Object> resultMap =  dfUpBgBaigeTestImgService.extractAndSaveImagesFromExcel(file, baseInfoStr, batchId);
 
+            dfUpBgBaigeMekService.saveExcelWithJson(file, baseInfo);
+
             // 根据结果返回成功或失败
             return result > 0
-                    ? new Result(200, "bg 液抛Excel和JSON数据上传成功")
-                    : new Result(500, "bg 液抛Excel和JSON数据上传失败");
+                    ? new Result(200, "bg 百格测试和煮水百格接口上传Excel和JSON数据上传成功")
+                    : new Result(500, "bg 百格测试和煮水百格接口上传Excel和JSON数据上传失败");
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new Result(500, "bg 液抛Excel和JSON数据上传失败: " + e.getMessage());
+            return new Result(500, "bg 百格测试和煮水百格接口上传Excel和JSON数据数据上传失败: " + e.getMessage());
         }
     }
 

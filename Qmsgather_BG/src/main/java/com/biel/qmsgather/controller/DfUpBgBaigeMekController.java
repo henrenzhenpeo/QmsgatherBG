@@ -37,6 +37,7 @@ public class DfUpBgBaigeMekController {
 
     @Autowired
     private DfUpBgBaigeTestImgService dfUpBgBaigeTestImgService;
+
     private final AtomicReference<String> sharedBatchId = new AtomicReference<>();
 
     @Value("${file.upload-dir}")

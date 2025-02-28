@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -101,7 +103,7 @@ public class DfUpBgDripServiceImpl extends ServiceImpl<DfUpBgDripMapper, DfUpBgD
         FormulaEvaluator evaluator = sheet.getWorkbook().getCreationHelper().createFormulaEvaluator();
         DataFormatter formatter = new DataFormatter();
 
-        for (int i = 4; i <= sheet.getLastRowNum(); i++) {
+        for (int i = 3; i <= sheet.getLastRowNum(); i++) {
             Row row = sheet.getRow(i);
             if (row == null || isEmptyRow(row)) continue;
 
@@ -114,12 +116,20 @@ public class DfUpBgDripServiceImpl extends ServiceImpl<DfUpBgDripMapper, DfUpBgD
             entity.setColor(baseInfo.getColor());
             entity.setStage(baseInfo.getStage());
             entity.setTestDate(baseInfo.getTestDate());
-            entity.setBatchId(baseInfo.getTestDate() + "-" + batchId);
+            entity.setUploadName(baseInfo.getUploader());
+            entity.setBatchId(this.getMaxBatchId());
             // entity.setSheetName(sheet.getSheetName()); // 添加sheet页名称
 
             // 从Excel行中读取数据
             // 使用getMergedCellValue处理可能合并的单元格
-            entity.setTestDate2(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
+            // entity.setTestDate2(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
+
+            Integer excelDate = this.convertStringToInt(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
+
+            convertExcelNumberToDate(excelDate);
+
+             entity.setTestDate2(convertExcelNumberToDate(excelDate));
+
             entity.setTestClass(getMergedCellValue(sheet, i, 1, row.getCell(1), evaluator, formatter));
             entity.setType(getMergedCellValue(sheet, i, 2, row.getCell(2), evaluator, formatter));
             entity.setExcelProcess(getMergedCellValue(sheet, i, 3, row.getCell(3), evaluator, formatter));
@@ -229,17 +239,48 @@ public class DfUpBgDripServiceImpl extends ServiceImpl<DfUpBgDripMapper, DfUpBgD
         }
     }
 
+    public String convertExcelNumberToDate(int excelDate) {
+        try {
+            // 将Excel数值转换为Java Date对象
+            Date javaDate = DateUtil.getJavaDate(excelDate);
+            // 格式化日期
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            return sdf.format(javaDate);
+        } catch (Exception e) {
+            return String.valueOf(excelDate);
+        }
+    }
 
 
 
 
 
+    public int convertStringToInt(String numberStr) {
+        try {
+            // 方法1：使用Double解析后转int
+            return (int) Double.parseDouble(numberStr);
+
+            // 方法2：先分割字符串，取整数部分
+            // return Integer.parseInt(numberStr.split("\\.")[0]);
+
+            // 方法3：使用正则表达式
+            // return Integer.parseInt(numberStr.replaceAll("\\..*", ""));
+
+        } catch (Exception e) {
+            // 转换失败时的处理，可以返回默认值或抛出异常
+            return 0; // 或者抛出异常：throw new IllegalArgumentException("无效的数字格式");
+        }
+    }
 
 
 
 
-
-
+    public static String convertDateToString(LocalDate date, String pattern) {
+        // 创建 DateTimeFormatter 对象，指定日期格式
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        // 将 LocalDate 格式化为字符串
+        return date.format(formatter);
+    }
 
 
 
