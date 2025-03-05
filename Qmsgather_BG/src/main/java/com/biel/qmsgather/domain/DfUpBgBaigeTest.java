@@ -66,6 +66,11 @@ public class DfUpBgBaigeTest implements Serializable {
     private String testTime;
 
     /**
+     * 工序（OC0百格，终烤后，AS后）
+     */
+    private String production;
+
+    /**
      * area1
      */
     private String area1;
@@ -99,6 +104,16 @@ public class DfUpBgBaigeTest implements Serializable {
      * area7
      */
     private String area7;
+
+    /**
+     * area8
+     */
+    private String area8;
+
+    /**
+     * area9
+     */
+    private String area9;
 
     /**
      * conclusion

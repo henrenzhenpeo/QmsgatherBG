@@ -31,6 +31,11 @@ public class DfUpBgInkLandHeight implements Serializable {
     private String project;
 
     /**
+     * 工序
+     */
+    private String process;
+
+    /**
      * 颜色
      */
     private String color;

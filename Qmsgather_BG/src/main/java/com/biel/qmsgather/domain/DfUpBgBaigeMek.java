@@ -41,6 +41,12 @@ public class DfUpBgBaigeMek implements Serializable {
     private String project;
 
     /**
+     * 工序
+     */
+    @ApiModelProperty("工序")
+    private String production;
+
+    /**
      * 颜色
      */
     private String color;

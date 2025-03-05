@@ -59,10 +59,10 @@ public class DfUpBgInkThickness2Controller {
 
         boolean b = dfUpBgInkThickness2Service.saveBatch(dfUpBgInkThickness2List);
         if (b) {
-            return new Result(500,"油墨厚度接口上传失败");
+            return new Result(200,"油墨厚度接口上传成功");
         }
 
-        return new Result(500,"请上传油墨厚度接口值");
+        return new Result(500,"油墨厚度接口上传失败");
     }
 
 

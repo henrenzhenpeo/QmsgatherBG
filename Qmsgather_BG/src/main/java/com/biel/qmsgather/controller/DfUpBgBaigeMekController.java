@@ -1,5 +1,10 @@
 package com.biel.qmsgather.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.api.R;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfUpBgBaigeMek;
 import com.biel.qmsgather.domain.DfUpBgBaigeTest;
 import com.biel.qmsgather.domain.DfUpBgBaigeTestImg;
@@ -76,8 +81,9 @@ public class DfUpBgBaigeMekController {
     @ApiOperation(value = "BG MEK百格图片上传")
     public ResponseEntity<Object> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files,
                                                       @RequestParam("process") String process,
+                                                      @RequestParam("production") String production,
                                                       @RequestParam("testDate") String testDate) {
-        String batchId = process+"-"+dfUpBgBaigeTestImgService.getMaxBatchId();
+        String batchId = production+"-"+process+"-"+dfUpBgBaigeTestImgService.getMaxBatchId();
         sharedBatchId.set(batchId);
 
         // 创建以 batch_id 为名的文件夹
@@ -156,6 +162,59 @@ public class DfUpBgBaigeMekController {
         }
     }
 
+
+    @GetMapping("/findDfUpBaigeMek")
+    @ApiOperation(value = "BG 百格Mek查询接口")
+    public R findDfUpBaigeMek(
+            @RequestParam(value = "process", required = false) String process,
+            @RequestParam(value = "factory", required = false) String factory,
+            @RequestParam(value = "stage", required = false) String stage,
+            @RequestParam(value = "project", required = false) String project,
+            @RequestParam(value = "color", required = false) String color,
+            @RequestParam(value = "production", required = false) String production,
+            @RequestParam(value = "state", required = false) String state,
+            @RequestParam(value = "startTestDate", required = false) String startTestDate,
+            @RequestParam(value = "endTestDate", required = false) String endTestDate,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "limit", defaultValue = "10") int limit) {
+
+        // 创建查询条件
+        QueryWrapper<DfUpBgBaigeMek> dfUpBgBaigeMekQueryWrapper = new QueryWrapper<>();
+
+        // 构建查询条件
+        if (StringUtils.isNotEmpty(process)) {
+            dfUpBgBaigeMekQueryWrapper.eq("process", process);
+        }
+        if (StringUtils.isNotEmpty(factory)) {
+            dfUpBgBaigeMekQueryWrapper.eq("factory", factory);
+        }
+        if (StringUtils.isNotEmpty(stage)) {
+            dfUpBgBaigeMekQueryWrapper.eq("stage", stage);
+        }
+        if (StringUtils.isNotEmpty(project)) {
+            dfUpBgBaigeMekQueryWrapper.eq("project", project);
+        }
+        if (StringUtils.isNotEmpty(color)) {
+            dfUpBgBaigeMekQueryWrapper.eq("color", color);
+        }
+        if (StringUtils.isNotEmpty(state)) {
+            dfUpBgBaigeMekQueryWrapper.eq("state", state);
+        }
+        if (StringUtils.isNotEmpty(production)) {
+            dfUpBgBaigeMekQueryWrapper.eq("production", production);
+        }
+        if (StringUtils.isNotEmpty(startTestDate) && StringUtils.isNotEmpty(endTestDate)) {
+            dfUpBgBaigeMekQueryWrapper.between("test_date", startTestDate, endTestDate);
+        }
+
+        // 执行分页查询
+        IPage<DfUpBgBaigeMek> pageResult = dfUpBgBaigeMekService.page(
+                new Page<>(page, limit),
+                dfUpBgBaigeMekQueryWrapper
+        );
+
+        return R.ok(pageResult);
+    }
 
 
 

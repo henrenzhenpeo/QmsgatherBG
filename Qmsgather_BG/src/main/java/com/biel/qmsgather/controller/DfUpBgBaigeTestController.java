@@ -1,5 +1,11 @@
 package com.biel.qmsgather.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.api.R;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.biel.qmsgather.domain.DfUpBgAsback;
 import com.biel.qmsgather.domain.DfUpBgBaigeTest;
 import com.biel.qmsgather.domain.DfUpBgBaigeTestImg;
 import com.biel.qmsgather.domain.DfUpBgDrip;
@@ -85,8 +91,9 @@ public class DfUpBgBaigeTestController {
     @ApiOperation(value = "BG 百格测试/煮水百格图片上传")
     public ResponseEntity<Object> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files,
                                                       @RequestParam("process") String process,
+                                                      @RequestParam("production") String production,
                                                       @RequestParam("testDate") String testDate) {
-        String batchId = process + "-" + dfUpBgBaigeTestImgService.getMaxBatchId();
+        String batchId = production +"-"+ process + "-" + dfUpBgBaigeTestImgService.getMaxBatchId();
         sharedBatchId.set(batchId);
 
         // 创建以 batch_id 为名的文件夹
@@ -172,6 +179,59 @@ public class DfUpBgBaigeTestController {
     }
 
 
+
+    @GetMapping("/findDfUpBaigeTest")
+    @ApiOperation(value = "BG 百格测试/煮水百格查询接口")
+    public R findDfUpBaigeTest(
+            @RequestParam(value = "process", required = false) String process,
+            @RequestParam(value = "factory", required = false) String factory,
+            @RequestParam(value = "stage", required = false) String stage,
+            @RequestParam(value = "project", required = false) String project,
+            @RequestParam(value = "color", required = false) String color,
+            @RequestParam(value = "production", required = false) String production,
+            @RequestParam(value = "state", required = false) String state,
+            @RequestParam(value = "startTestDate", required = false) String startTestDate,
+            @RequestParam(value = "endTestDate", required = false) String endTestDate,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "limit", defaultValue = "10") int limit) {
+
+        // 创建查询条件
+        QueryWrapper<DfUpBgBaigeTest> dfUpBgBaigeTestQueryWrapper = new QueryWrapper<>();
+
+        // 构建查询条件
+        if (StringUtils.isNotEmpty(process)) {
+            dfUpBgBaigeTestQueryWrapper.eq("process", process);
+        }
+        if (StringUtils.isNotEmpty(factory)) {
+            dfUpBgBaigeTestQueryWrapper.eq("factory", factory);
+        }
+        if (StringUtils.isNotEmpty(stage)) {
+            dfUpBgBaigeTestQueryWrapper.eq("stage", stage);
+        }
+        if (StringUtils.isNotEmpty(project)) {
+            dfUpBgBaigeTestQueryWrapper.eq("project", project);
+        }
+        if (StringUtils.isNotEmpty(color)) {
+            dfUpBgBaigeTestQueryWrapper.eq("color", color);
+        }
+        if (StringUtils.isNotEmpty(state)) {
+            dfUpBgBaigeTestQueryWrapper.eq("state", state);
+        }
+        if (StringUtils.isNotEmpty(production)) {
+            dfUpBgBaigeTestQueryWrapper.eq("production", production);
+        }
+        if (StringUtils.isNotEmpty(startTestDate) && StringUtils.isNotEmpty(endTestDate)) {
+            dfUpBgBaigeTestQueryWrapper.between("test_date", startTestDate, endTestDate);
+        }
+
+        // 执行分页查询
+        IPage<DfUpBgBaigeTest> pageResult = dfUpBgBaigeTestService.page(
+                new Page<>(page, limit),
+                dfUpBgBaigeTestQueryWrapper
+        );
+
+        return R.ok(pageResult);
+    }
 
 
 

@@ -56,6 +56,7 @@ public class DfUpBgInkLandHeightController {
             @RequestParam(value = "stage", required = false) String stage,
             @RequestParam(value = "project", required = false) String project,
             @RequestParam(value = "state", required = false) String state,
+            @RequestParam(value = "process", required = false) String process,
             @RequestParam(value = "color", required = false) String color,
             @RequestParam(value = "startTestDate", required = false) String startTestDate,
             @RequestParam(value = "endTestDate", required = false) String endTestDate,
@@ -76,6 +77,9 @@ public class DfUpBgInkLandHeightController {
         }
         if (StringUtils.isNotEmpty(state)) {
             dfUpBgInkLandHeightQueryWrapper.eq("state", state);
+        }
+        if (StringUtils.isNotEmpty(process)) {
+            dfUpBgInkLandHeightQueryWrapper.eq("process", process);
         }
         if (StringUtils.isNotEmpty(color)) {
             dfUpBgInkLandHeightQueryWrapper.eq("color", color);

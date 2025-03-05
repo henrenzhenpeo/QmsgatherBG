@@ -46,6 +46,11 @@ public class DfUpBgDrip implements Serializable {
     private String process;
 
     /**
+     * 测试编号
+     */
+    private String testNumber;
+
+    /**
      * 日期（yyyy-mm-dd）
      */
     private String testDate;
@@ -121,11 +126,6 @@ public class DfUpBgDrip implements Serializable {
     private String batchId;
 
 
-
-    /**
-     * 测试数量
-     */
-    private String testNumber;
 
     /**
      * 类型
