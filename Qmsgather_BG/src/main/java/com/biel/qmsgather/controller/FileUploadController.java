@@ -1,7 +1,8 @@
 package com.biel.qmsgather.controller;
 
-import com.biel.qmsgather.util.Result;
+
 import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,7 +18,8 @@ import java.nio.file.Paths;
 @Api(tags = "bg 图片上传接口")
 public class FileUploadController {
 
-    private static final String UPLOAD_DIR = "/Users/dafenqi/Downloads/uploads/";
+    @Value("${file.upload-dir}")
+    private String uploadDir;
 
     @PostMapping("/uploadMultipleFiles")
     public ResponseEntity<String> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
@@ -27,7 +29,7 @@ public class FileUploadController {
             }
             try {
                 byte[] bytes = file.getBytes();
-                Path path = Paths.get(UPLOAD_DIR + file.getOriginalFilename());
+                Path path = Paths.get(uploadDir + file.getOriginalFilename());
                 System.out.println("path:"+path);
                 Files.write(path, bytes);
             } catch (IOException e) {
