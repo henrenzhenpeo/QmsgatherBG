@@ -5,13 +5,16 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.biel.qmsgather.domain.DfOrtOilInk;
 import com.biel.qmsgather.domain.DfUpBgDrip;
 import com.biel.qmsgather.domain.DfUpBgGrindingBottom;
 import com.biel.qmsgather.domain.DfUpBgInkDensity;
 import com.biel.qmsgather.domain.dto.DfUpBgDripDto;
 import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
 import com.biel.qmsgather.domain.dto.DfUpBgGrindingBottomDto;
+import com.biel.qmsgather.service.DfOrtOilInkService;
 import com.biel.qmsgather.service.DfUpBgDripService;
+import com.biel.qmsgather.util.DateUtil;
 import com.biel.qmsgather.util.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
@@ -31,8 +34,32 @@ public class DfUpBgDripController {
     @Autowired
     private DfUpBgDripService dfUpBgDripService;
 
+    @Autowired
+    private DfOrtOilInkService dfOrtOilInkService;
 
 
+    @PostMapping("/uploadDfOrtOilInkService")
+    @ApiOperation(value = "水滴角接口上传")
+    public Result uploadDfOrtOilInkService(@RequestBody List<DfOrtOilInk> dfOrtOilInkList){
+        for (DfOrtOilInk dfOrtOilInk : dfOrtOilInkList) {
+            System.out.println(dfOrtOilInk.getCheckTime());
+            String batchFromDate = DateUtil.getBatchFromDate(dfOrtOilInk.getCheckTime());
+            dfOrtOilInk.setBatch(batchFromDate);
+            if (dfOrtOilInk.getDayOrNight().equals("白斑")) {
+                dfOrtOilInk.setDayOrNight("A");
+            }else if (dfOrtOilInk.getDayOrNight().equals("晚班")) {
+                dfOrtOilInk.setDayOrNight("B");
+            }
+        }
+
+        boolean b = dfOrtOilInkService.saveBatch(dfOrtOilInkList);
+//        Boolean b = dfUpCgResistanceService.save(dfUpCgResistanceList);
+        if (b) {
+            return new Result(200,"水滴角接口上传成功");
+        }
+
+        return new Result(500,"水滴角接口上传失败");
+    }
 
 
     @PostMapping("/upload")

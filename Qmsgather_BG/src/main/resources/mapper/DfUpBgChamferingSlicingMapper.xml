@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpBgChamferingSlicingMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfUpBgChamferingSlicing">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="factory" column="factory" jdbcType="VARCHAR"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="color" column="color" jdbcType="VARCHAR"/>
+            <result property="stage" column="stage" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="date" column="date" jdbcType="VARCHAR"/>
+            <result property="testClasses" column="test_classes" jdbcType="VARCHAR"/>
+            <result property="testTime" column="test_time" jdbcType="VARCHAR"/>
+            <result property="testRemark" column="test_remark" jdbcType="VARCHAR"/>
+            <result property="testPoint" column="test_point" jdbcType="VARCHAR"/>
+            <result property="testFaiY" column="test_fai_y" jdbcType="VARCHAR"/>
+            <result property="testFaiX" column="test_fai_x" jdbcType="VARCHAR"/>
+            <result property="testImg1" column="test_img1" jdbcType="VARCHAR"/>
+            <result property="testImg2" column="test_img2" jdbcType="VARCHAR"/>
+            <result property="testImg3" column="test_img3" jdbcType="VARCHAR"/>
+            <result property="test1Y" column="test1_y" jdbcType="VARCHAR"/>
+            <result property="test2Y" column="test2_y" jdbcType="VARCHAR"/>
+            <result property="test3Y" column="test3_y" jdbcType="VARCHAR"/>
+            <result property="test1X" column="test1_x" jdbcType="VARCHAR"/>
+            <result property="test2X" column="test2_x" jdbcType="VARCHAR"/>
+            <result property="test3X" column="test3_x" jdbcType="VARCHAR"/>
+            <result property="updateName" column="update_name" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,factory,project,
+        color,stage,status,
+        date,test_classes,test_time,
+        test_remark,test_point,test_fai_y,
+        test_fai_x,test_img1,test_img2,
+        test_img3,test1_y,test2_y,
+        test3_y,test1_x,test2_x,
+        test3_x,update_name,update_time,
+        batch_id
+    </sql>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfOrtStressDetailMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfOrtStressDetail">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="color" column="color" jdbcType="VARCHAR"/>
+            <result property="factoryTestTime" column="factory_test_time" jdbcType="VARCHAR"/>
+            <result property="testTime" column="test_time" jdbcType="TIMESTAMP"/>
+            <result property="dayOrNight" column="day_or_night" jdbcType="VARCHAR"/>
+            <result property="batch" column="batch" jdbcType="VARCHAR"/>
+            <result property="process" column="process" jdbcType="VARCHAR"/>
+            <result property="cs" column="CS" jdbcType="DOUBLE"/>
+            <result property="csk" column="CSK" jdbcType="DOUBLE"/>
+            <result property="dol" column="DOL" jdbcType="DOUBLE"/>
+            <result property="ct" column="CT" jdbcType="DOUBLE"/>
+            <result property="doc" column="DOC" jdbcType="DOUBLE"/>
+            <result property="tact" column="TACT" jdbcType="DOUBLE"/>
+            <result property="ctta" column="CTTA" jdbcType="DOUBLE"/>
+            <result property="gtValue" column="gt_value" jdbcType="DOUBLE"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,project,color,
+        factory_test_time,test_time,day_or_night,
+        batch,process,CS,
+        CSK,DOL,CT,
+        DOC,TACT,CTTA,
+        gt_value,create_time
+    </sql>
+</mapper>

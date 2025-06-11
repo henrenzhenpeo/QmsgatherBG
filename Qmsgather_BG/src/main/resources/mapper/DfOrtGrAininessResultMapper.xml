@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfOrtGrAininessResultMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfOrtGrAininessResult">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="color" column="color" jdbcType="VARCHAR"/>
+            <result property="batch" column="batch" jdbcType="VARCHAR"/>
+            <result property="process" column="process" jdbcType="VARCHAR"/>
+            <result property="dayOrNight" column="day_or_night" jdbcType="VARCHAR"/>
+            <result property="testNum" column="test_num" jdbcType="INTEGER"/>
+            <result property="okNum" column="ok_num" jdbcType="INTEGER"/>
+            <result property="okRate" column="ok_rate" jdbcType="DOUBLE"/>
+            <result property="result" column="result" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="testTime" column="test_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,project,color,
+        batch,process,day_or_night,
+        test_num,ok_num,ok_rate,
+        result,create_time,test_time
+    </sql>
+</mapper>

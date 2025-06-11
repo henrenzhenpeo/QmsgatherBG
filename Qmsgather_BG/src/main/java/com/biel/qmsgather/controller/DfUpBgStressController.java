@@ -5,9 +5,14 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.biel.qmsgather.domain.DfOrtStressDetail;
+import com.biel.qmsgather.domain.DfOrtStressResult;
 import com.biel.qmsgather.domain.DfUpBgSandBlast;
 import com.biel.qmsgather.domain.DfUpBgStress;
+import com.biel.qmsgather.service.DfOrtStressDetailService;
+import com.biel.qmsgather.service.DfOrtStressResultService;
 import com.biel.qmsgather.service.DfUpBgStressService;
+import com.biel.qmsgather.util.DateUtil;
 import com.biel.qmsgather.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,6 +35,12 @@ public class DfUpBgStressController {
 
     @Autowired
     private DfUpBgStressService dfUpBgStressService;
+
+    @Autowired
+    private DfOrtStressDetailService dfOrtStressDetailService;
+
+    @Autowired
+    private DfOrtStressResultService dfOrtStressResultService;
 
     @PostMapping("/upload")
     @ApiOperation(value = "bg应力接口上传")
@@ -90,6 +101,31 @@ public class DfUpBgStressController {
         );
 
         return R.ok(pageResult);
+    }
+
+    @PostMapping("/uploadDfOrtStressDetail")
+    @ApiOperation(value = "bg应力接口上传ort")
+    public Result uploadDfOrtStressDetail(@RequestBody DfOrtStressResult dfOrtStressResult){
+
+        String batchFromDate = DateUtil.getBatchFromDate(dfOrtStressResult.getTestTime());
+        dfOrtStressResult.setBatch(batchFromDate);
+        for (DfOrtStressDetail dfOrtStressDetail : dfOrtStressResult.getDfOrtStressDetailList()) {
+            dfOrtStressDetail.setBatch(batchFromDate);
+            if (dfOrtStressDetail.getDayOrNight().equals("白班")) {
+                dfOrtStressDetail.setDayOrNight("A");
+            }else if (dfOrtStressDetail.getDayOrNight().equals("晚班")) {
+                dfOrtStressDetail.setDayOrNight("B");
+            }
+            dfOrtStressDetail.setFactoryTestTime(batchFromDate+""+dfOrtStressDetail.getDayOrNight());
+        }
+
+        boolean b = dfOrtStressResultService.save(dfOrtStressResult);
+        if (b) {
+            dfOrtStressDetailService.saveBatch(dfOrtStressResult.getDfOrtStressDetailList());
+            return new Result(200,"bg应力接口ort上传成功");
+        }
+
+        return new Result(500,"bg应力接口ort上传失败");
     }
 
 

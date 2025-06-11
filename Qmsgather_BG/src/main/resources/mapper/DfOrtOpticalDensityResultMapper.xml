@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfOrtOpticalDensityResultMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfOrtOpticalDensityResult">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="color" column="color" jdbcType="VARCHAR"/>
+            <result property="batch" column="batch" jdbcType="VARCHAR"/>
+            <result property="ink1Result" column="ink1_result" jdbcType="VARCHAR"/>
+            <result property="ink2Result" column="ink2_result" jdbcType="VARCHAR"/>
+            <result property="ink3Result" column="ink3_result" jdbcType="VARCHAR"/>
+            <result property="ink4Result" column="ink4_result" jdbcType="VARCHAR"/>
+            <result property="result" column="result" jdbcType="VARCHAR"/>
+            <result property="checkTime" column="check_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,project,color,
+        batch,ink1_result,ink2_result,
+        ink3_result,ink4_result,result,
+        check_time,create_time
+    </sql>
+</mapper>

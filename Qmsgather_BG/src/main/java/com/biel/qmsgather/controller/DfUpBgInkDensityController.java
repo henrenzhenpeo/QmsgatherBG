@@ -5,17 +5,25 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.biel.qmsgather.domain.DfOrtFqcOpticalDensity;
+import com.biel.qmsgather.domain.DfOrtOpticalDensity;
+import com.biel.qmsgather.domain.DfOrtOpticalDensityResult;
 import com.biel.qmsgather.domain.DfUpBgInkDensity;
 import com.biel.qmsgather.domain.DfUpBgInkThickness;
 import com.biel.qmsgather.domain.dto.DfUpBgInkDensityDto;
 import com.biel.qmsgather.domain.dto.DfUpBgInkThicknessDto;
+import com.biel.qmsgather.service.DfOrtFqcOpticalDensityService;
+import com.biel.qmsgather.service.DfOrtOpticalDensityResultService;
+import com.biel.qmsgather.service.DfOrtOpticalDensityService;
 import com.biel.qmsgather.service.DfUpBgInkDensityService;
+import com.biel.qmsgather.util.DateUtil;
 import com.biel.qmsgather.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,6 +35,15 @@ public class DfUpBgInkDensityController {
 
     @Autowired
     private DfUpBgInkDensityService dfUpBgInkDensityService;
+
+    @Autowired
+    private DfOrtFqcOpticalDensityService dfOrtFqcOpticalDensityService;
+
+    @Autowired
+    private DfOrtOpticalDensityService dfOrtOpticalDensityService;
+
+    @Autowired
+    private DfOrtOpticalDensityResultService dfOrtOpticalDensityResultService;
 
     @PostMapping("/upload")
     @ApiOperation(value = "OD密度接口接口上传")
@@ -47,6 +64,43 @@ public class DfUpBgInkDensityController {
 
         return new Result(500,"OD密度接口上传失败");
     }
+
+    @PostMapping("/uploadDfOrtFqcOpticalDensity")
+    @ApiOperation(value = "OD密度接口接口上传IPQC")
+    public Result uploadDfOrtFqcOpticalDensity(@RequestBody List<DfOrtFqcOpticalDensity> dfOrtFqcOpticalDensities){
+
+        for (DfOrtFqcOpticalDensity dfOrtFqcOpticalDensity : dfOrtFqcOpticalDensities) {
+            Date checkTime = dfOrtFqcOpticalDensity.getCheckTime();
+            String batchFromDate = DateUtil.getBatchFromDate(checkTime);
+            dfOrtFqcOpticalDensity.setBatch(batchFromDate);
+        }
+
+        boolean b = dfOrtFqcOpticalDensityService.saveBatch(dfOrtFqcOpticalDensities);
+        if (b) {
+            return new Result(200,"OD密度接口上传成功");
+        }
+
+        return new Result(500,"OD密度接口上传失败");
+    }
+
+    @PostMapping("/uploadDfOrtOpticalDensityResult")
+    @ApiOperation(value = "OD密度接口接口上传OQC")
+    public Result uploadDfOrtOpticalDensityResult(@RequestBody DfOrtOpticalDensityResult dfOrtOpticalDensityResult){
+
+        String batchFromDate = DateUtil.getBatchFromDate(dfOrtOpticalDensityResult.getCheckTime());
+        dfOrtOpticalDensityResult.setBatch(batchFromDate);
+        for (DfOrtOpticalDensity dfOrtOpticalDensity : dfOrtOpticalDensityResult.getDfOrtOpticalDensityList()) {
+            dfOrtOpticalDensity.setBatch(batchFromDate);
+        }
+        boolean b = dfOrtOpticalDensityResultService.save(dfOrtOpticalDensityResult);
+        if (b) {
+            dfOrtOpticalDensityService.saveBatch(dfOrtOpticalDensityResult.getDfOrtOpticalDensityList());
+            return new Result(200,"OD密度上传OQC上传成功");
+        }
+
+        return new Result(500,"OD密度上传OQC上传失败");
+    }
+
 
 
     @GetMapping("/findDfUpBgInkDensity")

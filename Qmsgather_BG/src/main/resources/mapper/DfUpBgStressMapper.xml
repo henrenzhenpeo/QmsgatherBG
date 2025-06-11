@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpBgStressMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfUpBgStress">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="factory" column="factory" jdbcType="VARCHAR"/>
+            <result property="productModel" column="product_model" jdbcType="VARCHAR"/>
+            <result property="profuctColor" column="profuct_color" jdbcType="VARCHAR"/>
+            <result property="process" column="process" jdbcType="VARCHAR"/>
+            <result property="date" column="date" jdbcType="VARCHAR"/>
+            <result property="heatNumber" column="heat_number" jdbcType="VARCHAR"/>
+            <result property="pointId" column="point_id" jdbcType="INTEGER"/>
+            <result property="testTime" column="test_time" jdbcType="VARCHAR"/>
+            <result property="csValue" column="cs_value" jdbcType="DECIMAL"/>
+            <result property="cskValue" column="csk_value" jdbcType="DECIMAL"/>
+            <result property="dolValue" column="dol_value" jdbcType="DECIMAL"/>
+            <result property="ctValue" column="ct_value" jdbcType="DECIMAL"/>
+            <result property="docValue" column="doc_value" jdbcType="DECIMAL"/>
+            <result property="cttaDivValue" column="ctta_div_value" jdbcType="DECIMAL"/>
+            <result property="cttaMulValue" column="ctta_mul_value" jdbcType="DECIMAL"/>
+            <result property="gt" column="gt" jdbcType="DECIMAL"/>
+            <result property="updateTime" column="update_time" jdbcType="VARCHAR"/>
+            <result property="updateName" column="update_name" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,factory,product_model,
+        profuct_color,process,date,
+        heat_number,point_id,test_time,
+        cs_value,csk_value,dol_value,
+        ct_value,doc_value,ctta_div_value,
+        ctta_mul_value,gt,update_time,
+        update_name,batch_id
+    </sql>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfOrtOilInkMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfOrtOilInk">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="batch" column="batch" jdbcType="VARCHAR"/>
+            <result property="checkTime" column="check_time" jdbcType="TIMESTAMP"/>
+            <result property="dayOrNight" column="day_or_night" jdbcType="VARCHAR"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="stage" column="stage" jdbcType="VARCHAR"/>
+            <result property="color" column="color" jdbcType="VARCHAR"/>
+            <result property="no" column="no" jdbcType="INTEGER"/>
+            <result property="point1" column="point1" jdbcType="DOUBLE"/>
+            <result property="point2" column="point2" jdbcType="DOUBLE"/>
+            <result property="point3" column="point3" jdbcType="DOUBLE"/>
+            <result property="point4" column="point4" jdbcType="DOUBLE"/>
+            <result property="point5" column="point5" jdbcType="DOUBLE"/>
+            <result property="point6" column="point6" jdbcType="DOUBLE"/>
+            <result property="point7" column="point7" jdbcType="DOUBLE"/>
+            <result property="point8" column="point8" jdbcType="DOUBLE"/>
+            <result property="point9" column="point9" jdbcType="DOUBLE"/>
+            <result property="result" column="result" jdbcType="VARCHAR"/>
+            <result property="oqcOrFqc" column="oqc_or_fqc" jdbcType="VARCHAR"/>
+            <result property="test" column="test" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,batch,check_time,
+        day_or_night,project,stage,
+        color,no,point1,
+        point2,point3,point4,
+        point5,point6,point7,
+        point8,point9,result,
+        oqc_or_fqc,test,create_time
+    </sql>
+</mapper>
