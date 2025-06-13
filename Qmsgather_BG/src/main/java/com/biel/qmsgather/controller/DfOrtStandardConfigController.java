@@ -35,6 +35,8 @@ public class DfOrtStandardConfigController {
             @RequestParam(value = "process", required = false) String process,
             @RequestParam(value = "project", required = false) String project,
             @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "testStage", required = false) String testStage,
+            @RequestParam(value = "testLocal", required = false) String testLocal,
             @RequestParam(value = "color", required = false) String color) {
 
         // 创建查询条件
@@ -53,6 +55,12 @@ public class DfOrtStandardConfigController {
         }
         if (StringUtils.isNotEmpty(type)) {
             dfOrtStandardConfigQueryWrapper.eq("type", type);
+        }
+        if (StringUtils.isNotEmpty(testStage)) {
+            dfOrtStandardConfigQueryWrapper.eq("test_stage", testStage);
+        }
+        if (StringUtils.isNotEmpty(testLocal)) {
+            dfOrtStandardConfigQueryWrapper.eq("test_local", testLocal);
         }
 
         // 执行分页查询

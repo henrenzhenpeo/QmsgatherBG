@@ -63,4 +63,10 @@ public class DfOrtStandardConfig {
      * 顺序
      */
     private String standardItem;
+
+    //测试区域（水滴角）
+    private String testLocal;
+
+    //测试阶段（水滴角）
+    private String testStage;
 }
