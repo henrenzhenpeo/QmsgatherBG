@@ -11,6 +11,7 @@ import java.util.List;
 
 @Data
 public class DfUpBgClarityParticleGlossVo {
+    private Long id;               // 主表ID，修改时用
     /**
      * 项目
      */

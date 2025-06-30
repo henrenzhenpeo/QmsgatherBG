@@ -67,6 +67,8 @@ public class DfOrtGlossDetail {
      */
     private Date createTime;
 
+    private Integer isDeleted;
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {

@@ -67,13 +67,14 @@ public class DfOrtStandardConfigController {
         List<DfOrtStandardConfig> configs = dfOrtStandardConfigService.list(dfOrtStandardConfigQueryWrapper);
         // 转成想要的 Map 结构
         Map<String, Map<String, Object>> result = configs.stream().collect(Collectors.toMap(
-                config -> config.getStandardItem().toLowerCase(), // key 是 standardItem 小写
+                config -> config.getStandardItem().toLowerCase(),
                 config -> {
                     Map<String, Object> value = new HashMap<>();
                     value.put("standardMin", config.getStandardMin());
                     value.put("standardMax", config.getStandardMax());
                     return value;
-                }
+                },
+                (existing, replacement) -> existing // 或 replacement，看你要保留哪一个
         ));
         return R.ok(result);
     }

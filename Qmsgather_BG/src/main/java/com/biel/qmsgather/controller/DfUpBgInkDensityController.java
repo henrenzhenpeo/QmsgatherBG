@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfOrtFqcOpticalDensity;
 import com.biel.qmsgather.domain.DfOrtOpticalDensity;
 import com.biel.qmsgather.domain.DfOrtOpticalDensityResult;
+import com.biel.qmsgather.domain.DfUpBgDayinpen;
 import com.biel.qmsgather.domain.DfUpBgInkDensity;
 import com.biel.qmsgather.domain.DfUpBgInkThickness;
 import com.biel.qmsgather.domain.dto.DfUpBgInkDensityDto;
@@ -23,8 +24,10 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/bg/dfUpBgInkDensity")
@@ -143,6 +146,150 @@ public class DfUpBgInkDensityController {
 
         return R.ok(pageResult);
     }
+
+
+    @GetMapping("/pageDfOrtFqcOpticalDensity")
+    @ApiOperation(value = "分页查询OD密度IPQC记录，支持按batch模糊搜索")
+    public Result pageDfOrtFqcOpticalDensity(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(required = false) String batch) {
+
+        QueryWrapper<DfOrtFqcOpticalDensity> queryWrapper = new QueryWrapper<>();
+        if (batch != null && !batch.isEmpty()) {
+            queryWrapper.like("batch", batch);
+        }
+        IPage<DfOrtFqcOpticalDensity> resultPage = dfOrtFqcOpticalDensityService.page(
+                new Page<>(pageNum, pageSize),
+                queryWrapper
+        );
+        return new Result(200, "查询成功", resultPage);
+    }
+
+    @GetMapping("/pageDfOrtOpticalDensityResult")
+    @ApiOperation(value = "分页查询OD密度OQC主表记录，支持按batch模糊搜索")
+    public Result pageDfOrtOpticalDensityResult(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(required = false) String batch) {
+        QueryWrapper<DfOrtOpticalDensityResult> queryWrapper = new QueryWrapper<>();
+        if (batch != null && !batch.isEmpty()) {
+            queryWrapper.like("batch", batch);
+        }
+        IPage<DfOrtOpticalDensityResult> resultPage = dfOrtOpticalDensityResultService.page(
+                new Page<>(pageNum, pageSize),
+                queryWrapper
+        );
+        return new Result(200, "查询成功", resultPage);
+    }
+
+    @GetMapping("/getDfOrtFqcOpticalDensityById/{id}")
+    @ApiOperation(value = "根据ID查询OD密度IPQC记录")
+    public Result getDfOrtFqcOpticalDensityById(@PathVariable Long id) {
+        DfOrtFqcOpticalDensity data = dfOrtFqcOpticalDensityService.getById(id);
+        if (data != null) {
+            return new Result(200, "查询成功", data);
+        }
+        return new Result(404, "未找到记录");
+    }
+
+    @PutMapping("/updateDfOrtFqcOpticalDensity")
+    @ApiOperation(value = "修改OD密度IPQC记录")
+    public Result updateDfOrtFqcOpticalDensity(@RequestBody DfOrtFqcOpticalDensity dfOrtFqcOpticalDensity) {
+        if (dfOrtFqcOpticalDensity.getId() == null) {
+            return new Result(400, "ID不能为空");
+        }
+        // 更新批次号
+        String batchFromDate = DateUtil.getBatchFromDate(dfOrtFqcOpticalDensity.getCheckTime());
+        dfOrtFqcOpticalDensity.setBatch(batchFromDate);
+
+        boolean result = dfOrtFqcOpticalDensityService.updateById(dfOrtFqcOpticalDensity);
+        return result ? new Result(200, "修改成功") : new Result(500, "修改失败");
+    }
+
+
+    @DeleteMapping("/deleteDfOrtFqcOpticalDensity")
+    @ApiOperation(value = "批量删除OD密度IPQC记录")
+    public Result deleteDfOrtFqcOpticalDensity(@RequestBody List<Long> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return new Result(400, "ID列表不能为空");
+        }
+        boolean result = dfOrtFqcOpticalDensityService.removeByIds(ids);
+        return result ? new Result(200, "删除成功") : new Result(500, "删除失败");
+    }
+
+
+    @GetMapping("/getDfOrtOpticalDensityResultById/{id}")
+    @ApiOperation(value = "根据ID查询OD密度OQC记录（含明细）")
+    public Result getDfOrtOpticalDensityResultById(@PathVariable Long id) {
+        DfOrtOpticalDensityResult result = dfOrtOpticalDensityResultService.getById(id);
+        if (result != null) {
+            // 查询明细
+            List<DfOrtOpticalDensity> details = dfOrtOpticalDensityService.list(
+                    new QueryWrapper<DfOrtOpticalDensity>().eq("batch", result.getBatch())
+            );
+            result.setDfOrtOpticalDensityList(details);
+            return new Result(200, "查询成功", result);
+        }
+        return new Result(404, "未找到记录");
+    }
+
+
+    @PutMapping("/updateDfOrtOpticalDensityResult")
+    @ApiOperation(value = "修改OD密度OQC记录（含明细）")
+    public Result updateDfOrtOpticalDensityResult(@RequestBody DfOrtOpticalDensityResult result) {
+        if (result.getId() == null) {
+            return new Result(400, "ID不能为空");
+        }
+
+        // 更新主表
+        String batchFromDate = DateUtil.getBatchFromDate(result.getCheckTime());
+        result.setBatch(batchFromDate);
+        boolean updateMain = dfOrtOpticalDensityResultService.updateById(result);
+        if (!updateMain) {
+            return new Result(500, "主表更新失败");
+        }
+
+        // 删除旧明细（真删）
+        dfOrtOpticalDensityService.remove(new QueryWrapper<DfOrtOpticalDensity>().eq("batch", result.getBatch()));
+
+        // 新增明细
+        for (DfOrtOpticalDensity detail : result.getDfOrtOpticalDensityList()) {
+            detail.setBatch(batchFromDate);
+        }
+        dfOrtOpticalDensityService.saveBatch(result.getDfOrtOpticalDensityList());
+
+        return new Result(200, "修改成功");
+    }
+
+
+    @DeleteMapping("/deleteDfOrtOpticalDensityResultBatch")
+    @ApiOperation(value = "批量删除OD密度OQC记录（含明细）")
+    public Result deleteDfOrtOpticalDensityResultBatch(@RequestBody List<Long> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return new Result(400, "ID列表不能为空");
+        }
+
+        // 查询所有主表记录，拿批次号
+        Collection<DfOrtOpticalDensityResult> results = dfOrtOpticalDensityResultService.listByIds(ids);
+
+        if (results.isEmpty()) {
+            return new Result(404, "记录不存在");
+        }
+        List<String> batches = results.stream()
+                .map(DfOrtOpticalDensityResult::getBatch)
+                .collect(Collectors.toList());
+        // 删除所有明细
+        dfOrtOpticalDensityService.remove(
+                new QueryWrapper<DfOrtOpticalDensity>().in("batch", batches)
+        );
+
+        // 删除所有主表
+        boolean removeResult = dfOrtOpticalDensityResultService.removeByIds(ids);
+
+        return removeResult ? new Result(200, "批量删除成功") : new Result(500, "批量删除失败");
+    }
+
 
 
 }

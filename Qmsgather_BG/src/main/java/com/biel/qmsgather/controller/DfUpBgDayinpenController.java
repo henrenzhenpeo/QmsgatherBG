@@ -12,8 +12,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -90,6 +93,35 @@ public class DfUpBgDayinpenController {
         return R.ok(pageResult);
     }
 
+    @GetMapping("/getById/{id}")
+    @ApiOperation(value = "根据ID查询达音笔数据")
+    public Result getDfUpBgDayinpenById(@PathVariable Long id) {
+        DfUpBgDayinpen data = dfUpBgDayinpenService.getById(id);
+        if (data != null) {
+            return new Result(200, "查询成功", data);
+        }
+        return new Result(404, "未找到对应记录");
+    }
+
+    @PutMapping("/update")
+    @ApiOperation(value = "根据ID修改达音笔数据")
+    public Result updateDfUpBgDayinpen(@RequestBody DfUpBgDayinpen dfUpBgDayinpen) {
+        if (dfUpBgDayinpen.getId() == null) {
+            return new Result(400, "ID不能为空，无法定位修改记录");
+        }
+        boolean result = dfUpBgDayinpenService.updateById(dfUpBgDayinpen);
+        return result ? new Result(200, "修改成功") : new Result(500, "修改失败");
+    }
+
+    @DeleteMapping("/delete")
+    @ApiOperation(value = "根据ID批量删除达音笔数据")
+    public Result deleteDfUpBgDayinpen(@RequestBody List<Long> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return new Result(400, "ID列表不能为空");
+        }
+        boolean result = dfUpBgDayinpenService.removeByIds(ids);
+        return result ? new Result(200, "删除成功") : new Result(500, "删除失败");
+    }
 
 
 }
