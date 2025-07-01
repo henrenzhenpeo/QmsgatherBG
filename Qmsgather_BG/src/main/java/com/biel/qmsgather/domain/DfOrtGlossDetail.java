@@ -1,5 +1,6 @@
 package com.biel.qmsgather.domain;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -24,16 +25,19 @@ public class DfOrtGlossDetail {
     /**
      * 项目
      */
+    @Excel(name = "项目")
     private String project;
 
     /**
      * 颜色
      */
+    @Excel(name = "颜色")
     private String color;
 
     /**
      * 工厂测试时间，是字符串
      */
+    @Excel(name = "工厂测试时间")
     private String factoryTestTime;
 
     /**
@@ -45,21 +49,25 @@ public class DfOrtGlossDetail {
     /**
      * 白夜班
      */
+    @Excel(name = "白夜班")
     private String dayOrNight;
 
     /**
      * 批次，一天为一批
      */
+    @Excel(name = "批次号")
     private String batch;
 
     /**
      * 工序
      */
+    @Excel(name = "工序")
     private String process;
 
     /**
      * 测量值
      */
+    @Excel(name = "测量值")
     private Double value;
 
     /**
@@ -67,7 +75,6 @@ public class DfOrtGlossDetail {
      */
     private Date createTime;
 
-    private Integer isDeleted;
 
     @Override
     public boolean equals(Object that) {

@@ -1,5 +1,7 @@
 package com.biel.qmsgather.controller;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -10,6 +12,7 @@ import com.biel.qmsgather.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 @RestController
@@ -113,6 +119,47 @@ public class DfOrtInkThicknessController {
             return new Result(200, "删除成功");
         }
         return new Result(500, "删除失败");
+    }
+
+
+    @GetMapping("/exportDfOrtInkThickness")
+    @ApiOperation(value = "导出BG ORT油墨厚度数据（可按批次/项目/颜色/工厂/阶段筛选）")
+    public void exportDfOrtInkThickness(
+            @RequestParam(required = false) String batch,
+            @RequestParam(required = false) String project,
+            @RequestParam(required = false) String color,
+            @RequestParam(required = false) String factory,
+            @RequestParam(required = false) String stage,
+            HttpServletResponse response
+    ) throws IOException {
+        QueryWrapper<DfOrtInkThickness> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotBlank(batch)) {
+            queryWrapper.like("batch", batch);
+        }
+        if (StringUtils.isNotBlank(project)) {
+            queryWrapper.like("project", project);
+        }
+        if (StringUtils.isNotBlank(color)) {
+            queryWrapper.like("color", color);
+        }
+        if (StringUtils.isNotBlank(factory)) {
+            queryWrapper.like("factory", factory);
+        }
+        if (StringUtils.isNotBlank(stage)) {
+            queryWrapper.like("stage", stage);
+        }
+        queryWrapper.orderByDesc("test_time");
+
+        List<DfOrtInkThickness> list = ortInkThicknessService.list(queryWrapper);
+
+        ExportParams exportParams = new ExportParams("BG ORT油墨厚度", "厚度记录");
+        Workbook workbook = ExcelExportUtil.exportExcel(exportParams, DfOrtInkThickness.class, list);
+
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("BG油墨厚度数据.xlsx", "UTF-8"));
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("UTF-8");
+        workbook.write(response.getOutputStream());
+        workbook.close();
     }
 
 

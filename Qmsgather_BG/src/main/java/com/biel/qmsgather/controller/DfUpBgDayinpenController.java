@@ -1,5 +1,7 @@
 package com.biel.qmsgather.controller;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
@@ -10,6 +12,7 @@ import com.biel.qmsgather.service.DfUpBgDayinpenService;
 import com.biel.qmsgather.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 @RestController
@@ -121,6 +127,49 @@ public class DfUpBgDayinpenController {
         }
         boolean result = dfUpBgDayinpenService.removeByIds(ids);
         return result ? new Result(200, "删除成功") : new Result(500, "删除失败");
+    }
+
+
+    @GetMapping("/exportDfUpBgDayinpen")
+    @ApiOperation(value = "导出BG达音笔数据（可按工厂/阶段/项目/颜色）")
+    public void exportDfUpBgDayinpen(
+            @RequestParam(value = "factory", required = false) String factory,
+            @RequestParam(value = "stage", required = false) String stage,
+            @RequestParam(value = "project", required = false) String project,
+            @RequestParam(value = "color", required = false) String color,
+            HttpServletResponse response
+    ) throws IOException {
+        // 查询条件
+        QueryWrapper<DfUpBgDayinpen> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotEmpty(factory)) {
+            queryWrapper.eq("factory", factory);
+        }
+        if (StringUtils.isNotEmpty(stage)) {
+            queryWrapper.eq("stage", stage);
+        }
+        if (StringUtils.isNotEmpty(project)) {
+            queryWrapper.eq("project", project);
+        }
+        if (StringUtils.isNotEmpty(color)) {
+            queryWrapper.eq("color", color);
+        }
+        queryWrapper.orderByDesc("date");
+
+        // 查询数据
+        List<DfUpBgDayinpen> list = dfUpBgDayinpenService.list(queryWrapper);
+
+        // 导出配置
+        ExportParams exportParams = new ExportParams("BG达音笔数据", "达音笔记录");
+        Workbook workbook = ExcelExportUtil.exportExcel(exportParams, DfUpBgDayinpen.class, list);
+
+        // 设置响应头
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("BG达音笔数据.xlsx", "UTF-8"));
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("UTF-8");
+
+        // 写出
+        workbook.write(response.getOutputStream());
+        workbook.close();
     }
 
 

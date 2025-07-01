@@ -1,5 +1,6 @@
 package com.biel.qmsgather.domain;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -21,51 +22,61 @@ public class DfUpBgDayinpen {
     /**
      * 工厂
      */
+    @Excel(name = "工厂")
     private String factory;
 
     /**
      * 项目
      */
+    @Excel(name = "项目")
     private String project;
 
     /**
      * 工序
      */
+    @Excel(name = "工序")
     private String process;
 
     /**
      * 颜色
      */
+    @Excel(name = "颜色")
     private String color;
 
     /**
      * 阶段
      */
+    @Excel(name = "阶段")
     private String stage;
 
     /**
      * 状态
      */
+    @Excel(name = "状态")
     private String status;
 
     /**
      * 日期
      */
+    @Excel(name = "日期")
     private String date;
 
     /**
      * 达音笔#30/#32
      */
+    @Excel(name = "达音笔#30/#32")
     private Integer dayinpenId;
 
     /**
      * 油墨面结果（OK，NG）
      */
+    @Excel(name = "油墨面结果")
     private String inkSideResult;
 
     /**
      * 凹槽弧边结果（OK，NG）
      */
+    @Excel(name = "凹槽弧边结果")
     private String cavitySplineResult;
 
     /**
@@ -76,11 +87,13 @@ public class DfUpBgDayinpen {
     /**
      * 上传时间
      */
+    @Excel(name = "上传时间")
     private String uploadTime;
 
     /**
      * 批次号
      */
+    @Excel(name = "批次号")
     private String batchId;
 
     @Override

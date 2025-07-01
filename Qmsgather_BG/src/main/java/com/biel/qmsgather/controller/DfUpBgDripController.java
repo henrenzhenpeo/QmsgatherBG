@@ -1,28 +1,28 @@
 package com.biel.qmsgather.controller;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfOrtOilInk;
 import com.biel.qmsgather.domain.DfUpBgDrip;
-import com.biel.qmsgather.domain.DfUpBgGrindingBottom;
-import com.biel.qmsgather.domain.DfUpBgInkDensity;
-import com.biel.qmsgather.domain.dto.DfUpBgDripDto;
-import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
-import com.biel.qmsgather.domain.dto.DfUpBgGrindingBottomDto;
 import com.biel.qmsgather.service.DfOrtOilInkService;
 import com.biel.qmsgather.service.DfUpBgDripService;
 import com.biel.qmsgather.util.DateUtil;
 import com.biel.qmsgather.util.Result;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 @RestController
@@ -60,6 +60,71 @@ public class DfUpBgDripController {
 
         return new Result(500,"水滴角接口上传失败");
     }
+
+
+    @GetMapping("/getDfOrtOilInkPage")
+    @ApiOperation(value = "分页查询水滴角记录（可按batch筛选）")
+    public Result getDfOrtOilInkPage(
+            @RequestParam(defaultValue = "1") int pageNum,
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam(required = false) String batch) {
+
+        QueryWrapper<DfOrtOilInk> queryWrapper = new QueryWrapper<>();
+
+        if (StringUtils.isNotBlank(batch)) {
+            queryWrapper.like("batch", batch);
+        }
+        // 执行分页查询
+        IPage<DfOrtOilInk> pageResult = dfOrtOilInkService.page(
+                new Page<>(pageNum, pageSize),
+                queryWrapper
+        );
+
+        return new Result(200, "查询成功", pageResult);
+    }
+
+    @GetMapping("/getDfOrtOilInkById/{id}")
+    @ApiOperation(value = "根据ID查询水滴角记录")
+    public Result getDfOrtOilInkById(@PathVariable Long id) {
+        DfOrtOilInk result = dfOrtOilInkService.getById(id);
+        if (result == null) {
+            return new Result(404, "记录不存在");
+        }
+        return new Result(200, "查询成功", result);
+    }
+
+    @PutMapping("/updateDfOrtOilInk")
+    @ApiOperation(value = "根据ID修改水滴角记录")
+    public Result updateDfOrtOilInk(@RequestBody DfOrtOilInk dfOrtOilInk) {
+        if (dfOrtOilInk.getId() == null) {
+            return new Result(400, "ID不能为空，无法定位修改记录");
+        }
+
+        // 重新生成批次号
+        String batchFromDate = DateUtil.getBatchFromDate(dfOrtOilInk.getCheckTime());
+        dfOrtOilInk.setBatch(batchFromDate);
+
+        if ("白班".equals(dfOrtOilInk.getDayOrNight())) {
+            dfOrtOilInk.setDayOrNight("A");
+        } else if ("晚班".equals(dfOrtOilInk.getDayOrNight())) {
+            dfOrtOilInk.setDayOrNight("B");
+        }
+
+        boolean updateResult = dfOrtOilInkService.updateById(dfOrtOilInk);
+        return updateResult ? new Result(200, "修改成功") : new Result(500, "修改失败");
+    }
+
+    @DeleteMapping("/deleteDfOrtOilInkBatch")
+    @ApiOperation(value = "批量删除水滴角记录")
+    public Result deleteDfOrtOilInkBatch(@RequestBody List<Long> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return new Result(400, "ID列表不能为空");
+        }
+
+        boolean removeResult = dfOrtOilInkService.removeByIds(ids);
+        return removeResult ? new Result(200, "批量删除成功") : new Result(500, "批量删除失败");
+    }
+
 
 
     @PostMapping("/upload")
@@ -128,52 +193,33 @@ public class DfUpBgDripController {
         return R.ok(pageResult);
     }
 
+    @GetMapping("/exportDfOrtOilInk")
+    @ApiOperation(value = "导出水滴角数据（按batch筛选）")
+    public void exportDfOrtOilInk(
+            @RequestParam(required = false) String batch,
+            HttpServletResponse response) throws IOException {
 
-
-
-
-
-
-    @PostMapping("/uploadExcelWithJson")
-    @ApiOperation(value = "bg 水滴接口上传Excel和JSON数据")
-    public Result uploadExcelWithJson(@RequestParam("file") MultipartFile file,
-                                      @RequestParam("jsonData") String jsonData) {
-
-
-
-
-
-        try {
-            // 解析JSON数据
-            DfUpBgExcelDto baseInfo = new ObjectMapper().readValue(jsonData, DfUpBgExcelDto.class);
-
-            // 调用服务处理Excel和JSON数据
-            boolean result = dfUpBgDripService.saveExcelWithJson(file, baseInfo);
-
-
-
-            if (result) {
-                return new Result(200, "bg 水滴角接口上传成功");
-            } else {
-                return new Result(500, "bg 水滴角接口上传失败");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new Result(500, "bg 水滴角接口上传失败: " + e.getMessage());
+        QueryWrapper<DfOrtOilInk> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotBlank(batch)) {
+            queryWrapper.like("batch", batch);
         }
+        List<DfOrtOilInk> list = dfOrtOilInkService.list(queryWrapper);
+
+        // 导出文件名
+        String fileName = "水滴角数据_" + (StringUtils.isNotBlank(batch) ? batch : "全部") + ".xlsx";
+
+        // 导出参数
+        ExportParams params = new ExportParams("水滴角数据", "数据", ExcelType.XSSF);
+        Workbook workbook = ExcelExportUtil.exportExcel(params, DfOrtOilInk.class, list);
+
+        // 设置响应头
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+
+        // 写出流
+        workbook.write(response.getOutputStream());
+        workbook.close();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

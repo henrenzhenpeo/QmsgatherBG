@@ -1,12 +1,12 @@
 package com.biel.qmsgather.controller;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfOrtGlossDetail;
 import com.biel.qmsgather.domain.DfOrtGlossResult;
-import com.biel.qmsgather.domain.DfUpBgAsback;
 import org.apache.commons.lang3.StringUtils;
 import com.biel.qmsgather.service.DfOrtGlossDetailService;
 import com.biel.qmsgather.service.DfOrtGlossResultService;
@@ -14,6 +14,7 @@ import com.biel.qmsgather.util.DateUtil;
 import com.biel.qmsgather.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 @RestController
@@ -155,6 +159,59 @@ public class DfOrtGlossController {
             return new Result(200, "删除成功");
         }
         return new Result(500, "删除失败");
+    }
+
+
+    @GetMapping("/exportDfOrtGloss")
+    @ApiOperation(value = "导出BG光泽度数据（含明细，按批次/项目/颜色/工序筛选）")
+    public void exportDfOrtGloss(
+            @RequestParam(required = false) String batch,
+            @RequestParam(required = false) String project,
+            @RequestParam(required = false) String color,
+            @RequestParam(required = false) String process,
+            HttpServletResponse response
+    ) throws IOException {
+        // 构建主表查询条件
+        QueryWrapper<DfOrtGlossResult> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotBlank(batch)) {
+            queryWrapper.like("batch", batch);
+        }
+        if (StringUtils.isNotBlank(project)) {
+            queryWrapper.like("project", project);
+        }
+        if (StringUtils.isNotBlank(color)) {
+            queryWrapper.like("color", color);
+        }
+        if (StringUtils.isNotBlank(process)) {
+            queryWrapper.like("process", process);
+        }
+        queryWrapper.orderByDesc("create_time");
+
+        // 查询主表
+        List<DfOrtGlossResult> resultList = dfOrtGlossResultService.list(queryWrapper);
+
+        // 查询明细并与主表逐个匹配筛选
+        for (DfOrtGlossResult result : resultList) {
+            QueryWrapper<DfOrtGlossDetail> detailWrapper = new QueryWrapper<>();
+            detailWrapper.eq("batch", result.getBatch());
+            detailWrapper.eq("project", result.getProject());
+            detailWrapper.eq("color", result.getColor());
+            detailWrapper.eq("process", result.getProcess());
+
+            List<DfOrtGlossDetail> detailList = dfOrtGlossDetailService.list(detailWrapper);
+            result.setDfOrtGlossDetailList(detailList);
+        }
+
+        // 导出
+        ExportParams exportParams = new ExportParams("BG光泽度数据", "光泽度记录");
+        Workbook workbook = ExcelExportUtil.exportExcel(exportParams, DfOrtGlossResult.class, resultList);
+
+        // 响应流输出
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("BG光泽度数据.xlsx", "UTF-8"));
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("UTF-8");
+        workbook.write(response.getOutputStream());
+        workbook.close();
     }
 
 

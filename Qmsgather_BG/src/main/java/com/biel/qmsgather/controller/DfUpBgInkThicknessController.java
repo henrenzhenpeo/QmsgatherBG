@@ -7,8 +7,6 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfUpBgInkThickness;
 import com.biel.qmsgather.domain.DfUpBgInkThicknessChild;
-import com.biel.qmsgather.domain.DfUpBgLiquidThrowing;
-import com.biel.qmsgather.domain.dto.DfUpBgInkThicknessDto;
 import com.biel.qmsgather.service.DfUpBgInkThicknessChildService;
 import com.biel.qmsgather.service.DfUpBgInkThicknessService;
 import com.biel.qmsgather.util.Result;

@@ -1,5 +1,7 @@
 package com.biel.qmsgather.controller;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -12,6 +14,7 @@ import com.biel.qmsgather.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 @RestController
@@ -151,5 +157,59 @@ public class DfOrtGrAininessController {
         }
         return new Result(500, "删除失败");
     }
+
+
+    @GetMapping("/exportDfOrtGrAininess")
+    @ApiOperation(value = "导出BG颗粒度数据（含明细，可按批次/项目/颜色/工序筛选）")
+    public void exportDfOrtGrAininess(
+            @RequestParam(required = false) String batch,
+            @RequestParam(required = false) String project,
+            @RequestParam(required = false) String color,
+            @RequestParam(required = false) String process,
+            HttpServletResponse response
+    ) throws IOException {
+        // 主表条件
+        QueryWrapper<DfOrtGrAininessResult> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotBlank(batch)) {
+            queryWrapper.like("batch", batch);
+        }
+        if (StringUtils.isNotBlank(project)) {
+            queryWrapper.like("project", project);
+        }
+        if (StringUtils.isNotBlank(color)) {
+            queryWrapper.like("color", color);
+        }
+        if (StringUtils.isNotBlank(process)) {
+            queryWrapper.like("process", process);
+        }
+        queryWrapper.orderByDesc("create_time");
+
+        // 查询主表
+        List<DfOrtGrAininessResult> resultList = dfOrtGrAininessResultService.list(queryWrapper);
+
+        // 查询并绑定明细
+        for (DfOrtGrAininessResult result : resultList) {
+            QueryWrapper<DfOrtGrAininessDetail> detailWrapper = new QueryWrapper<>();
+            detailWrapper.eq("batch", result.getBatch());
+            detailWrapper.eq("project", result.getProject());
+            detailWrapper.eq("color", result.getColor());
+            detailWrapper.eq("process", result.getProcess());
+
+            List<DfOrtGrAininessDetail> detailList = dfOrtGrAininessDetailService.list(detailWrapper);
+            result.setDfOrtGrAininessDetailList(detailList);
+        }
+
+        // 导出
+        ExportParams exportParams = new ExportParams("BG颗粒度数据", "颗粒度记录");
+        Workbook workbook = ExcelExportUtil.exportExcel(exportParams, DfOrtGrAininessResult.class, resultList);
+
+        // 响应输出
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("BG颗粒度数据.xlsx", "UTF-8"));
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("UTF-8");
+        workbook.write(response.getOutputStream());
+        workbook.close();
+    }
+
 
 }

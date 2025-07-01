@@ -5,10 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.biel.qmsgather.domain.DfOrtOpticalDensityResult;
 import com.biel.qmsgather.domain.DfOrtStressDetail;
 import com.biel.qmsgather.domain.DfOrtStressResult;
-import com.biel.qmsgather.domain.DfUpBgSandBlast;
 import com.biel.qmsgather.domain.DfUpBgStress;
 import com.biel.qmsgather.service.DfOrtStressDetailService;
 import com.biel.qmsgather.service.DfOrtStressResultService;

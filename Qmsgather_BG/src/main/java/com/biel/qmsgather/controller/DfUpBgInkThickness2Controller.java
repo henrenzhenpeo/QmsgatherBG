@@ -5,9 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.biel.qmsgather.domain.DfUpBgInkThickness;
 import com.biel.qmsgather.domain.DfUpBgInkThickness2;
-import com.biel.qmsgather.domain.DfUpBgInkThicknessChild;
 import com.biel.qmsgather.domain.dto.DfUpBgExcelDto;
 
 import com.biel.qmsgather.service.DfUpBgInkLandHeightService;
