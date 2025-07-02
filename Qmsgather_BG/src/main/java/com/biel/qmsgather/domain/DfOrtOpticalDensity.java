@@ -1,5 +1,6 @@
 package com.biel.qmsgather.domain;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -25,47 +26,56 @@ public class DfOrtOpticalDensity {
     /**
      * 项目
      */
+    @Excel(name = "项目")
     private String project;
 
     /**
      * 颜色
      */
+    @Excel(name = "颜色")
     private String color;
 
     /**
      * 批次
      */
+    @Excel(name = "批次")
     private String batch;
 
     /**
      * 序号
      */
+    @Excel(name = "序号")
     private String no;
 
     /**
      * ink1值
      */
+    @Excel(name = "ink1值")
     private Double ink1;
 
     /**
      * ink2值
      */
+    @Excel(name = "ink2值")
     private Double ink2;
 
     /**
      * ink3值
      */
+    @Excel(name = "ink3值")
     private Double ink3;
 
     /**
      * ink4值
      */
+    @Excel(name = "ink4值")
     private Double ink4;
 
     /**
      * 检测时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @Excel(name = "检测时间",format = "yyyy-MM-dd HH:mm:ss")
     private Date checkTime;
 
     /**

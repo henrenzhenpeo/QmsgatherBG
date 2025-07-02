@@ -1,10 +1,14 @@
 package com.biel.qmsgather.controller;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.biel.qmsgather.domain.DfOrtOpticalDensity;
+import com.biel.qmsgather.domain.DfOrtOpticalDensityResult;
 import com.biel.qmsgather.domain.DfOrtStressDetail;
 import com.biel.qmsgather.domain.DfOrtStressResult;
 import com.biel.qmsgather.domain.DfUpBgStress;
@@ -16,6 +20,7 @@ import com.biel.qmsgather.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,8 +33,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
@@ -148,6 +158,15 @@ public class DfUpBgStressController {
                 queryWrapper
         );
 
+        //封装明细
+        for (DfOrtStressResult result : resultPage.getRecords()) {
+            List<DfOrtStressDetail> detailList = dfOrtStressDetailService.list(
+                    new QueryWrapper<DfOrtStressDetail>()
+                            .eq("batch", result.getBatch())
+            );
+            result.setDfOrtStressDetailList(detailList);
+        }
+
         return new Result(200, "查询成功", resultPage);
     }
 
@@ -233,6 +252,74 @@ public class DfUpBgStressController {
 
         return removeResult ? new Result(200, "批量删除成功") : new Result(500, "批量删除失败");
     }
+
+
+    @GetMapping("/exportDfOrtStressResult")
+    @ApiOperation(value = "导出BG应力ORT记录及明细Excel")
+    public void exportDfOrtStressResult(
+            @RequestParam(required = false) String batch,
+            @RequestParam(required = false) String project,
+            @RequestParam(required = false) String color,
+            @RequestParam(required = false) String process,
+            HttpServletResponse response) throws IOException {
+
+        // 查询主表条件
+        QueryWrapper<DfOrtStressResult> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotBlank(batch)) {
+            queryWrapper.like("batch", batch);
+        }
+        if (StringUtils.isNotBlank(project)) {
+            queryWrapper.like("project", project);
+        }
+        if (StringUtils.isNotBlank(color)) {
+            queryWrapper.like("color", color);
+        }
+        if (StringUtils.isNotBlank(process)) {
+            queryWrapper.like("process", process);
+        }
+        queryWrapper.orderByDesc("create_time");
+
+        // 查询主表数据
+        List<DfOrtStressResult> resultList = dfOrtStressResultService.list(queryWrapper);
+
+        if (!resultList.isEmpty()) {
+            // 批量提取批次
+            List<String> batchList = resultList.stream()
+                    .map(DfOrtStressResult::getBatch)
+                    .filter(Objects::nonNull)
+                    .distinct()
+                    .collect(Collectors.toList());
+
+            if (!batchList.isEmpty()) {
+                // 查询所有明细
+                for (DfOrtStressResult dfOrtStressResult : resultList) {
+                    QueryWrapper<DfOrtStressDetail> detailWrapper = new QueryWrapper<>();
+                    detailWrapper.eq("batch", dfOrtStressResult.getBatch());
+                    detailWrapper.eq("project", dfOrtStressResult.getProject());
+                    detailWrapper.eq("color", dfOrtStressResult.getColor());
+                    detailWrapper.eq("process", dfOrtStressResult.getProcess());
+
+                    List<DfOrtStressDetail> list = dfOrtStressDetailService.list(detailWrapper);
+                    dfOrtStressResult.setDfOrtStressDetailList(list);
+                }
+            }
+        }
+
+        // 导出Excel
+        ExportParams exportParams = new ExportParams("BG应力ORT记录", "应力ORT记录");
+        Workbook workbook = ExcelExportUtil.exportExcel(exportParams, DfOrtStressResult.class, resultList);
+
+        // 设置响应头
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("UTF-8");
+        String fileName = URLEncoder.encode("BG应力ORT记录导出.xlsx", "UTF-8").replaceAll("\\+", "%20");
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+
+        // 写出Excel
+        workbook.write(response.getOutputStream());
+        workbook.close();
+    }
+
 
 
 }

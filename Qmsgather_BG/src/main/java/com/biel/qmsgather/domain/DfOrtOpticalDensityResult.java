@@ -1,5 +1,7 @@
 package com.biel.qmsgather.domain;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.excel.annotation.ExcelCollection;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -25,46 +27,55 @@ public class DfOrtOpticalDensityResult {
     /**
      * 项目
      */
+    @Excel(name = "项目")
     private String project;
 
     /**
      * 颜色
      */
+    @Excel(name = "颜色")
     private String color;
 
     /**
      * 批次
      */
+    @Excel(name = "批次")
     private String batch;
 
     /**
      * ink1结果
      */
+    @Excel(name = "ink1结果")
     private String ink1Result;
 
     /**
      * ink2结果
      */
+    @Excel(name = "ink2结果")
     private String ink2Result;
 
     /**
      * ink3结果
      */
+    @Excel(name = "ink3结果")
     private String ink3Result;
 
     /**
      * ink4结果
      */
+    @Excel(name = "ink4结果")
     private String ink4Result;
 
     /**
      * 结果
      */
+    @Excel(name = "结果")
     private String result;
 
     /**
      * 检测时间
      */
+    @Excel(name = "检测时间",format = "yyyy-MM-dd HH:mm:ss")
     private Date checkTime;
 
     /**
@@ -74,6 +85,7 @@ public class DfOrtOpticalDensityResult {
 
     //返回结果字段
     @TableField(exist = false)
+    @ExcelCollection(name = "丝印-油墨密度明细")
     private List<DfOrtOpticalDensity> dfOrtOpticalDensityList;
 
     @Override

@@ -1,11 +1,14 @@
 package com.biel.qmsgather.controller;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.biel.qmsgather.domain.DfOrtFqcOpticalDensity;
+import com.biel.qmsgather.domain.DfOrtGrAininessDetail;
 import com.biel.qmsgather.domain.DfOrtOpticalDensity;
 import com.biel.qmsgather.domain.DfOrtOpticalDensityResult;
 import com.biel.qmsgather.domain.DfUpBgInkDensity;
@@ -17,12 +20,19 @@ import com.biel.qmsgather.util.DateUtil;
 import com.biel.qmsgather.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -163,21 +173,35 @@ public class DfUpBgInkDensityController {
     }
 
     @GetMapping("/pageDfOrtOpticalDensityResult")
-    @ApiOperation(value = "分页查询OD密度OQC主表记录，支持按batch模糊搜索")
+    @ApiOperation(value = "分页查询OD密度OQC结果，附带明细，支持按batch模糊搜索")
     public Result pageDfOrtOpticalDensityResult(
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(required = false) String batch) {
+
         QueryWrapper<DfOrtOpticalDensityResult> queryWrapper = new QueryWrapper<>();
-        if (batch != null && !batch.isEmpty()) {
+        if (StringUtils.isNotBlank(batch)) {
             queryWrapper.like("batch", batch);
         }
+
         IPage<DfOrtOpticalDensityResult> resultPage = dfOrtOpticalDensityResultService.page(
                 new Page<>(pageNum, pageSize),
                 queryWrapper
         );
-        return new Result(200, "查询成功", resultPage);
+
+        // 查询明细并封装
+        for (DfOrtOpticalDensityResult result : resultPage.getRecords()) {
+            List<DfOrtOpticalDensity> detailList = dfOrtOpticalDensityService.list(
+                    new QueryWrapper<DfOrtOpticalDensity>()
+                            .eq("batch", result.getBatch())
+            );
+            result.setDfOrtOpticalDensityList(detailList);
+        }
+
+        return new Result(200, "分页查询成功", resultPage);
     }
+
+
 
     @GetMapping("/getDfOrtFqcOpticalDensityById/{id}")
     @ApiOperation(value = "根据ID查询OD密度IPQC记录")
@@ -284,6 +308,95 @@ public class DfUpBgInkDensityController {
         boolean removeResult = dfOrtOpticalDensityResultService.removeByIds(ids);
 
         return removeResult ? new Result(200, "批量删除成功") : new Result(500, "批量删除失败");
+    }
+
+
+
+
+    @GetMapping("/exportDfOrtFqcOpticalDensity")
+    @ApiOperation(value = "导出OD密度IPQC记录")
+    public void exportDfOrtFqcOpticalDensity(
+            @RequestParam(required = false) String batch,
+            @RequestParam(required = false) String project,
+            @RequestParam(required = false) String color,
+            HttpServletResponse response
+    ) throws IOException {
+        // 构建查询条件
+        QueryWrapper<DfOrtFqcOpticalDensity> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotEmpty(batch)) {
+            queryWrapper.like("batch", batch);
+        }
+        if (StringUtils.isNotEmpty(project)) {
+            queryWrapper.like("project", project);
+        }
+        if (StringUtils.isNotEmpty(color)) {
+            queryWrapper.like("color", color);
+        }
+        queryWrapper.orderByDesc("check_time");
+
+        // 查询数据
+        List<DfOrtFqcOpticalDensity> list = dfOrtFqcOpticalDensityService.list(queryWrapper);
+
+        // 导出配置
+        ExportParams exportParams = new ExportParams("OD密度IPQC记录", "OD密度记录");
+        Workbook workbook = ExcelExportUtil.exportExcel(exportParams, DfOrtFqcOpticalDensity.class, list);
+
+        // 设置响应头
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("OD密度IPQC记录.xlsx", "UTF-8"));
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("UTF-8");
+
+        // 写出 Excel
+        workbook.write(response.getOutputStream());
+        workbook.close();
+    }
+
+
+    @GetMapping("/exportDfOrtOpticalDensityResult")
+    @ApiOperation(value = "导出OD密度OQC结果及明细Excel")
+    public void exportDfOrtOpticalDensityResult(
+            @RequestParam(required = false) String batch,
+            @RequestParam(required = false) String project,
+            @RequestParam(required = false) String color,
+            HttpServletResponse response)
+             throws IOException {
+
+        QueryWrapper<DfOrtOpticalDensityResult> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotBlank(batch)) {
+            queryWrapper.like("batch", batch);
+        }
+        if (StringUtils.isNotBlank(project)) {
+            queryWrapper.like("project", project);
+        }
+        if (StringUtils.isNotBlank(color)) {
+            queryWrapper.like("color", color);
+        }
+
+        List<DfOrtOpticalDensityResult> resultList = dfOrtOpticalDensityResultService.list(queryWrapper);
+
+        for (DfOrtOpticalDensityResult dfOrtOpticalDensityResult : resultList) {
+            QueryWrapper<DfOrtOpticalDensity> detailWrapper = new QueryWrapper<>();
+            detailWrapper.eq("batch", dfOrtOpticalDensityResult.getBatch());
+            detailWrapper.eq("project", dfOrtOpticalDensityResult.getProject());
+            detailWrapper.eq("color", dfOrtOpticalDensityResult.getColor());
+
+            List<DfOrtOpticalDensity> list = dfOrtOpticalDensityService.list(detailWrapper);
+            dfOrtOpticalDensityResult.setDfOrtOpticalDensityList(list);
+        }
+
+        // 导出Excel
+        ExportParams exportParams = new ExportParams("OD密度OQC结果导出", "OD密度OQC", ExcelType.HSSF);
+        Workbook workbook = ExcelExportUtil.exportExcel(exportParams, DfOrtOpticalDensityResult.class, resultList);
+
+        // 设置响应头
+        response.setHeader("content-type", "application/octet-stream");
+        response.setCharacterEncoding("utf-8");
+        String fileName = URLEncoder.encode("OD密度OQC结果导出.xls", "UTF-8").replaceAll("\\+", "%20");
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+
+        // 输出流写出
+        workbook.write(response.getOutputStream());
+        workbook.close();
     }
 
 

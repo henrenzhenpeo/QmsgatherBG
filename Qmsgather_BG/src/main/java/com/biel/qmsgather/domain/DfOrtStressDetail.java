@@ -1,5 +1,6 @@
 package com.biel.qmsgather.domain;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -24,82 +25,98 @@ public class DfOrtStressDetail {
     /**
      * 项目
      */
+    @Excel(name = "项目")
     private String project;
 
     /**
      * 颜色
      */
+    @Excel(name = "颜色")
     private String color;
 
     /**
      * 工厂测试时间，是字符串
      */
+    @Excel(name = "工厂测试时间")
     private String factoryTestTime;
 
     /**
      * 测试时间，用来筛选
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @Excel(name = "测试时间",format = "yyyy-MM-dd HH:mm:ss")
     private Date testTime;
 
     /**
      * 白夜班
      */
+    @Excel(name = "白夜班")
     private String dayOrNight;
 
     /**
      * 批次，一天为一批
      */
+    @Excel(name = "批次")
     private String batch;
 
     /**
      * 工序
      */
+    @Excel(name = "工序")
     private String process;
 
     /**
      * 
      */
+    @Excel(name = "cs")
     private Double cs;
 
     /**
      * 
      */
+    @Excel(name = "csk")
     private Double csk;
 
     /**
      * 
      */
+    @Excel(name = "dol")
     private Double dol;
 
     /**
      * 
      */
+    @Excel(name = "ct")
     private Double ct;
 
     /**
      * 
      */
+    @Excel(name = "doc")
     private Double doc;
 
     /**
      * 
      */
+    @Excel(name = "tact")
     private Double tact;
 
     /**
      * 
      */
+    @Excel(name = "ctta")
     private Double ctta;
 
     /**
      * 
      */
+    @Excel(name = "gtValue")
     private Double gtValue;
 
     /**
      * 
      */
+    @Excel(name = "创建时间",format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     @Override
